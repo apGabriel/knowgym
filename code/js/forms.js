@@ -10,10 +10,10 @@ function showForm(formType) {
 }
 
 function submitForm(event, formType) {
-    event.preventDefault(); // Evita la recarga de la página
+    event.preventDefault(); // Prevent page reload
 
     const formData = new FormData(event.target);
-    const phpScript = formType === 'login' ? 'form/login.php' : 'form/register.php';
+    const phpScript = formType === 'login' ? '../php/db/login.php' : '../php/db/register.php';
 
     fetch(phpScript, {
         method: 'POST',
@@ -23,7 +23,7 @@ function submitForm(event, formType) {
     .then(data => {
         if (data.success) {
             alert(`Success: ${data.message}`);
-            // Redireccionar o realizar otra acción
+            // Redirect or perform other actions
         } else {
             alert(`Error: ${data.message}`);
         }
@@ -34,11 +34,11 @@ function submitForm(event, formType) {
     });
 }
 
-// Maneja el parámetro "form" en la URL
+// Handle the "form" parameter in the URL
 const urlParams = new URLSearchParams(window.location.search);
-const formType = urlParams.get('form') || 'login'; // Por defecto, muestra login
+const formType = urlParams.get('form') || 'login'; // Default to login form
 showForm(formType);
 
-// Asigna el manejador de eventos a los formularios
+// Add event listeners to the forms
 document.getElementById('login-form').querySelector('form').addEventListener('submit', (event) => submitForm(event, 'login'));
 document.getElementById('register-form').querySelector('form').addEventListener('submit', (event) => submitForm(event, 'register'));
