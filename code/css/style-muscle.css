@@ -36,6 +36,24 @@ div.muscle-container {
                 margin: 0 auto;
                 display: block;
                 & > g {
+                    & > path.traps,
+                    & > path.front-shoulders,
+                    & > path.chest,
+                    & > path.biceps,
+                    & > path.obliques,
+                    & > path.abdominals,
+                    & > path.forearms,
+                    & > path.quads,
+                    & > path.traps-middle,
+                    & > path.rear-shoulders,
+                    & > path.lats,
+                    & > path.triceps,
+                    & > path.lowerback,
+                    & > path.glutes,
+                    & > path.hamstrings,
+                    & > path.calves {
+                        cursor: pointer;
+                    }
                     & > path.traps:hover {
                         fill: #d2bc8a;
                     }
