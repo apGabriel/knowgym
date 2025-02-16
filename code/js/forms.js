@@ -23,12 +23,17 @@ function submitForm(event, formType) {
     .then(data => {
         if (data.success) {
             alert(`Success: ${data.message}`);
+
             if (formType === 'register') {
                 // Si es el formulario de registro, redirige a login
-                window.location.href = 'forms.php?form=login'; // Redirige al formulario de login
+                window.location.href = 'forms.php?form=login';
             }
+
             if (formType === 'login') {
-                // Redirigir al index si el login es exitoso
+                // Guardar sesión en localStorage para manejar el estado en el frontend
+                localStorage.setItem('user_logged_in', 'true');
+
+                // Redirigir al index.php
                 window.location.href = '../php/index.php';
             }
         } else {
@@ -49,3 +54,23 @@ showForm(formType);
 // Asigna el manejador de eventos a los formularios
 document.getElementById('login-form').querySelector('form').addEventListener('submit', (event) => submitForm(event, 'login'));
 document.getElementById('register-form').querySelector('form').addEventListener('submit', (event) => submitForm(event, 'register'));
+
+// Verificar si el usuario está logueado y redirigir si es necesario
+if (localStorage.getItem('user_logged_in') === 'true') {
+    window.location.href = '../php/index.php';
+}
+
+// --- NUEVO CÓDIGO PARA MANEJAR EL BOTÓN DE CALENDARIO ---
+document.addEventListener("DOMContentLoaded", function () {
+    const calendarButton = document.getElementById("calendar-button");
+    const warningMessage = document.getElementById("calendar-warning");
+
+    if (calendarButton && warningMessage) {
+        calendarButton.addEventListener("click", function (event) {
+            if (!localStorage.getItem('user_logged_in')) {
+                event.preventDefault(); // Evita la redirección
+                warningMessage.classList.remove("hidden"); // Muestra el mensaje de advertencia
+            }
+        });
+    }
+});
