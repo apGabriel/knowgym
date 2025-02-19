@@ -97,8 +97,10 @@ section.hero {
         color: #d2bc8a;
         font-size: 0.9rem;
         text-align: center;
-        position: absolute;/*buscar otra manera de hacerlo para que este siempre centrado en vez de porcentajes*/
-        left: 42.5%;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: max-content;
     }
     
     
