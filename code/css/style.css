@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'Neuton';
     src: url('../../fonts/Neuton/Neuton-Regular.ttf') format('truetype');
-  }
+}
 
 body {
     font-family: Arial, sans-serif;
@@ -18,33 +18,83 @@ header {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1;
+    z-index: 10;
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    & > nav{
-        & > ul.nav-links {
-            display: flex;
-            justify-content: flex-end;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            gap: 15px;
-            margin-right: 15px;
-            & > li{
-                margin-left: 10px;
-                & > a{
-                    color: #fff;
-                    text-decoration: none;
-                    font-weight: bold;
-                }
-                & > a:hover {
-                    color: #d2bc8a;
-                }
-                
-            }
-        }
+    padding: 10px 20px;
+}
+
+/* Estilos para la navegación */
+ul.nav-links {
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 15px;
+    margin-right: 15px;
+}
+
+ul.nav-links li {
+    margin-left: 10px;
+}
+
+ul.nav-links li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+ul.nav-links li a:hover {
+    color: #d2bc8a;
+}
+
+/* Menú hamburguesa para vista móvil */
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    padding: 10px;
+    background: none;
+    border: none;
+}
+
+.menu-toggle img {
+    width: 30px;
+    height: 30px;
+}
+
+@media screen and (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    ul.nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 50px;
+        right: 10px;
+        background: rgba(16, 16, 16, 0.9);
+        width: 180px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        padding: 10px 0;
+    }
+
+    ul.nav-links li {
+        text-align: left;
+        padding: 10px 20px;
+    }
+
+    ul.nav-links li a {
+        display: block;
+        width: 100%;
+    }
+
+    ul.nav-links.show {
+        display: flex;
     }
 }
 
@@ -54,19 +104,23 @@ section.hero {
     color: #fff;
     margin-top: 50px;
     margin-bottom: 50px;
-    & > h1{
+
+    &>h1 {
         font-size: 2.5rem;
         margin-bottom: 10px;
     }
-    & > p{
+
+    &>p {
         font-size: 1.2rem;
         margin-bottom: 20px;
 
     }
-    & > div.buttons {
+
+    &>div.buttons {
         display: flex;
         justify-content: center;
-        & > button {
+
+        &>button {
             background: linear-gradient(to right, #956534, #d2bc8a, #956534);
             border: none;
             color: white;
@@ -77,22 +131,24 @@ section.hero {
             border-radius: 5px;
             transition: transform 0.2s, background-color 0.2s;
         }
-    
-        & > button:hover {
+
+        &>button:hover {
             transform: scale(1.1);
         }
-    
-        & > button.disabled {
-            background: #444; /* Color más oscuro para indicar deshabilitación */
+
+        &>button.disabled {
+            background: #444;
+            /* Color más oscuro para indicar deshabilitación */
             opacity: 0.5;
             border-radius: 5px;
             border: 2px solid #d2bc8a;
             transform: none;
         }
-    
+
 
     }
-    & > p#calendar-warning {
+
+    &>p#calendar-warning {
         display: none;
         color: #d2bc8a;
         font-size: 0.9rem;
@@ -102,8 +158,8 @@ section.hero {
         transform: translateX(-50%);
         width: max-content;
     }
-    
-    
+
+
     /*& > div.buttons {
         & > button {
             background: linear-gradient(to right, #956534, #d2bc8a, #956534);
@@ -122,9 +178,10 @@ section.hero {
 }
 
 section.image-banner {
-    background:black;
+    background: black;
     text-align: center;
-    & > img {
+
+    &>img {
         display: block;
         margin: 0 auto;
     }
@@ -134,11 +191,13 @@ section.why-section {
     color: white;
     padding: 20px 20px 50px 20px;
     text-align: center;
-    & > h2{
+
+    &>h2 {
         font-size: 2rem;
         margin-bottom: 20px;
     }
-    & > p{
+
+    &>p {
         font-size: 1rem;
         line-height: 1.6;
         margin-bottom: 20px;
@@ -153,13 +212,13 @@ footer {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    
-    & > div.social-media-links {
+
+    &>div.social-media-links {
         display: flex;
         gap: 10px;
         align-items: center;
 
-        & > a.social-icon {
+        &>a.social-icon {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -169,41 +228,45 @@ footer {
             background-color: #101010;
             border: 2px solid #d2bc8a;
             transition: background-color 0.3s, box-shadow 0.3s;
-            
-            & > svg.icon {
+
+            &>svg.icon {
                 fill: #d2bc8a;
                 width: 20px;
                 height: 20px;
             }
 
-            & > svg.icon:hover {
+            &>svg.icon:hover {
                 fill: #101010;
             }
         }
-        
-        & > a.social-icon:hover {
+
+        &>a.social-icon:hover {
             background-color: #d2bc8a;
             border-color: #101010;
         }
     }
 
-    & > div.footer-links {
+    &>div.footer-links {
         display: flex;
         justify-content: right;
         flex-wrap: wrap;
         list-style: none;
         padding: 0;
-        & > ul {
+
+        &>ul {
             list-style: none;
             padding: 0;
             margin: 10px;
-            & > li {
+
+            &>li {
                 margin: 5px 0;
-                & > a {
+
+                &>a {
                     color: #d2bc8a;
                     text-decoration: none;
                 }
-                & > a:hover {
+
+                &>a:hover {
                     text-decoration: underline;
                 }
             }
