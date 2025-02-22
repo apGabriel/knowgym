@@ -1,4 +1,6 @@
 <?php
 session_start();
-$disabled = !isset($_SESSION['user_id']) ? 'disabled' : ''; // Si no hay sesión, deshabilitado
+
+// Verificar si el usuario está logueado o no
+$is_logged_in = isset($_SESSION['user_id']) ? true : false;
 ?>

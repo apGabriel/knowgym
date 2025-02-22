@@ -1,3 +1,5 @@
+<?php include 'db/check_session.php'; ?>
+
 <header>
     <a href="index.php">
         <!--<img src="../../img/logo-wings.png" alt="Logo">-->
@@ -7,13 +9,19 @@
     </a>
     <div class="menu-toggle" onclick="toggleMenu()">
         <img src="../../img/burger-menu.svg" alt="menu" />
-        <div></div>
-        <div></div>
-        <div></div>
+
     </div>
     <ul class="nav-links">
-        <li><a href="forms.php?form=login">Login</a></li>
-        <li><a href="forms.php?form=register">Register</a></li>
+        <?php if (!$is_logged_in): ?>
+            <!-- Si el usuario no está logeado, muestra Login y Register -->
+            <li><a href="forms.php?form=login">Login</a></li>
+            <li><a href="forms.php?form=register">Register</a></li>
+        <?php else: ?>
+            <!-- Si el usuario está logeado, muestra "Darse de baja" -->
+            <li><a href="forms.php?form=unsubscribe">Log out</a></li>
+        <?php endif; ?>
+        <li>
+        </li>
         <li><a href="#">Contact</a></li>
     </ul>
     <script src="../js/menu.js"></script>
