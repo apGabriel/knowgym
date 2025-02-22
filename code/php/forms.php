@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/style-forms.css">
     <link rel="icon" href="../../img/logo-wings.ico" type="image/x-icon">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
@@ -32,6 +33,10 @@
                     <input type="email" name="email" placeholder="Email" required>
                     <input type="password" name="password" placeholder="Password" required>
                     <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+
+                    <!-- reCAPTCHA -->
+                    <div class="g-recaptcha" data-sitekey="6Lc_yt4qAAAAABhGg_uDtqzDHzPKw6QQ7uPpNVnL"></div>
+
                     <button type="submit" name="action" value="register">Register</button>
                 </form>
                 <p>Already have an account?

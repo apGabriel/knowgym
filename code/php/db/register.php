@@ -7,6 +7,38 @@ include 'db.php'; // Conexión a la base de datos
 
 // Verificar que el formulario haya sido enviado
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Verificar que el CAPTCHA se haya enviado
+    if (!isset($_POST['g-recaptcha-response']) || empty($_POST['g-recaptcha-response'])) {
+        echo json_encode(['success' => false, 'message' => 'CAPTCHA is required']);
+        exit();
+    }
+
+    $recaptcha_secret = "6Lc_yt4qAAAAABhGg_uDtqzDHzPKw6QQ7uPpNVnL"; // Reemplaza con tu clave secreta de reCAPTCHA
+    $recaptcha_response = $_POST['g-recaptcha-response'];
+
+    // Verificar con Google
+    $verify_url = "https://www.google.com/recaptcha/api/siteverify";
+    $data = [
+        'secret' => $recaptcha_secret,
+        'response' => $recaptcha_response
+    ];
+
+    $options = [
+        'http' => [
+            'header'  => "Content-Type: application/x-www-form-urlencoded\r\n",
+            'method'  => 'POST',
+            'content' => http_build_query($data)
+        ]
+    ];
+    $context  = stream_context_create($options);
+    $result = file_get_contents($verify_url, false, $context);
+    $responseKeys = json_decode($result, true);
+
+    if (!$responseKeys["success"]) {
+        echo json_encode(['success' => false, 'message' => 'CAPTCHA verification failed']);
+        exit();
+    }
+
     // Obtener los datos del formulario
     $username = isset($_POST['username']) ? $_POST['username'] : '';
     $email = isset($_POST['email']) ? $_POST['email'] : '';
@@ -53,5 +85,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     exit();
 }
-
 ?>
