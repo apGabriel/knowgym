@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
-    $recaptcha_secret = "6Lc_yt4qAAAAABhGg_uDtqzDHzPKw6QQ7uPpNVnL"; // Reemplaza con tu clave secreta de reCAPTCHA
+    $recaptcha_secret = "***REMOVED***"; // Reemplaza con tu clave secreta de reCAPTCHA
     $recaptcha_response = $_POST['g-recaptcha-response'];
 
     // Verificar con Google
