@@ -20,7 +20,7 @@
             <!-- Si el usuario está logeado, muestra "Darse de baja" -->
             <li><a href="forms.php?form=unsubscribe">Log out</a></li>
         <?php endif; ?>
-        <li>
+
         </li>
         <li><a href="#">Contact</a></li>
     </ul>

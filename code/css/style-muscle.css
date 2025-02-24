@@ -18,6 +18,7 @@ div.muscle-container {
             position: relative;
             border-radius: 15px;
             padding: 10px;
+            margin: 50px;
             &::before {
                 content: '';
                 position: absolute;
@@ -113,6 +114,7 @@ div.muscle-container {
             padding:20px;
             border-radius: 15px;
             border: 2px solid #d2bc8a;
+            margin-top: 50px;
             & > ul {
                 list-style-type: none;
                 padding: 0;
