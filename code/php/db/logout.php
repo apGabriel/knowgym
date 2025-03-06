@@ -1,5 +1,4 @@
 <?php
-// logout.php
 session_start();
 session_unset();  // Eliminar todas las variables de sesión
 session_destroy(); // Destruir la sesión
@@ -9,14 +8,11 @@ if (isset($_COOKIE[session_name()])) {
     setcookie(session_name(), '', time() - 42000, '/'); // Eliminar la cookie
 }
 
-// Verifica si la sesión fue destruida correctamente
-if (!isset($_SESSION['user_id'])) {
-    echo json_encode(['success' => true, 'message' => 'Session destroyed']);
-} else {
-    echo json_encode(['success' => false, 'message' => 'Session not destroyed']);
-}
+// Establecer el encabezado para indicar que la respuesta es JSON
+header('Content-Type: application/json');
+
+// Responder con JSON para que el frontend lo maneje
+echo json_encode(['success' => true]);
 
 exit();
-
-
 ?>

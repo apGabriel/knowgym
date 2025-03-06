@@ -11,14 +11,27 @@ div.muscle-container {
     text-align: center;
     & > div.muscle-map {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: flex-start;
         margin: 20px 0;
+        height: 600px; /* Ajusta según necesites */
+        &>:first-child{
+            left:0;
+        }
+        &>:last-child{
+            right:0;
+        }
         & > div.body {
-            position: relative;
+            position: absolute;
+            top:50%;
+            transform: translateY(-50%); /* Centra con respecto al eje Y */
             border-radius: 15px;
             padding: 10px;
             margin: 50px;
+            flex:1;
+            width: 30%; /* Ajusta el tamaño sin afectar el div central */
+            max-width: 250px;
+            
             &::before {
                 content: '';
                 position: absolute;
@@ -111,10 +124,15 @@ div.muscle-container {
         }
         & > div.exercise-list{
             background: linear-gradient(to right, #101010, #3E3E3E);
-            padding:20px;
+            padding: 20px;
             border-radius: 15px;
             border: 2px solid #d2bc8a;
-            margin-top: 50px;
+            z-index: 1;
+            width: 40%; /* Define un tamaño fijo */
+            max-width: 500px;
+            text-align: center;
+            position: relative;
+            margin: 0 auto; 
             & > ul {
                 list-style-type: none;
                 padding: 0;

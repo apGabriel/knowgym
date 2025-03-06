@@ -1,47 +1,25 @@
-function toggleMenu() {
-    const navLinks = document.querySelector('ul.nav-links');
-    navLinks.classList.toggle('show');  // Esto alternará la clase 'show'
-}
-
 function logoutUser() {
-    console.log("Intentando cerrar sesión...");  // Depuración: Indicar que se está intentando cerrar sesión
+    console.log("Intentando cerrar sesión...");
 
     fetch('db/logout.php', {
-        method: 'POST', // Enviamos la solicitud por POST
-        credentials: 'same-origin' // Para enviar las cookies de sesión
+        method: 'POST',
+        credentials: 'same-origin'
     })
     .then(response => response.json())
     .then(data => {
-        if (data.success) {
-            console.log("Sesión cerrada con éxito");  // Depuración: Mensaje cuando la sesión se cierre correctamente
-            location.reload(); // Recarga la página después de cerrar sesión
-            toggleMenu();
-        } else {
-            console.error("Error al cerrar sesión:", data.message); // Depuración: Si hay un error, se muestra en consola
-            alert("Error al cerrar sesión");
-        }
-    })
-    .catch(error => {
-        console.error('Error en la solicitud de logout:', error);  // Depuración: Si ocurre un error con la solicitud fetch
-    });
-}
-function toggleMenu() {
-    const navLinks = document.querySelector('ul.nav-links');
-    navLinks.classList.toggle('show');  // Esto alternará la clase 'show'
-}
+        console.log("Respuesta del servidor:", data);  
 
-function logoutUser() {
-    fetch('db/logout.php', {
-        method: 'POST', // Enviamos la solicitud por POST
-        credentials: 'same-origin' // Para enviar las cookies de sesión
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log("Respuesta del servidor:", data);  // Verifica lo que devuelve el servidor
         if (data.success) {
-            location.reload(); // Recarga la página después de cerrar sesión
-            toggleMenu();
+            console.log("Sesión cerrada con éxito");
+
+            // 🧹 Limpiar almacenamiento local para asegurar cierre completo
+            localStorage.clear();
+            sessionStorage.clear();
+
+            // 🔄 Recargar la página para reflejar los cambios
+            location.reload();
         } else {
+            console.error("Error al cerrar sesión:", data.message);
             alert("Error al cerrar sesión");
         }
     })
@@ -50,5 +28,3 @@ function logoutUser() {
         alert("Hubo un error al cerrar sesión");
     });
 }
-
-
