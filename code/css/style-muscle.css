@@ -4,34 +4,24 @@ body {
 
 /* Muscle Container Styles */
 div.muscle-container {
-    max-width: 1200px;
+    /*max-width: 1200px;*/
     margin: 50px auto;
+    margin-left: 0;
+    margin-right: 0;
     padding: 20px;
     border-radius: 8px;
     text-align: center;
     & > div.muscle-map {
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: flex-start;
-        margin: 20px 0;
-        height: 600px; /* Ajusta según necesites */
-        &>:first-child{
-            left:0;
-        }
-        &>:last-child{
-            right:0;
-        }
+        width: 100%;
+        position: relative;
         & > div.body {
-            position: absolute;
-            top:50%;
-            transform: translateY(-50%); /* Centra con respecto al eje Y */
+            position: relative;
             border-radius: 15px;
             padding: 10px;
             margin: 50px;
-            flex:1;
-            width: 30%; /* Ajusta el tamaño sin afectar el div central */
-            max-width: 250px;
-            
             &::before {
                 content: '';
                 position: absolute;
@@ -127,12 +117,12 @@ div.muscle-container {
             padding: 20px;
             border-radius: 15px;
             border: 2px solid #d2bc8a;
-            z-index: 1;
-            width: 40%; /* Define un tamaño fijo */
-            max-width: 500px;
+            margin-top: 50px;
             text-align: center;
-            position: relative;
-            margin: 0 auto; 
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: max-content;
             & > ul {
                 list-style-type: none;
                 padding: 0;
