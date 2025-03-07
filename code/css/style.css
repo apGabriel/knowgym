@@ -154,7 +154,7 @@ section.image-banner {
     background: black;
     text-align: center;
 
-    &>img {
+    &>picture>img {
         display: block;
         margin: 0 auto;
     }
@@ -287,4 +287,5 @@ footer {
         }
 
     }
+    
 }

@@ -20,7 +20,10 @@
     </section>
 
     <section class="image-banner">
+    <picture>
+        <source srcset="../../img/sentenses-movil.jpg" media="(max-width: 480px)">
         <img src="../../img/sentenses.jpg" alt="No Pain, No Gain">
+    </picture>
     </section>
 
     <section class="why-section">
