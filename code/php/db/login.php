@@ -1,5 +1,5 @@
 <?php
-// Habilitar la visualización de errores para depuración
+// Habilitar la visualización de errores para depuració
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
