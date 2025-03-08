@@ -7,3 +7,27 @@ CREATE TABLE users (
     password VARCHAR(255) NOT NULL);
 
 http://localhost/phpmyadmin/index.php?route=/sql&pos=0&db=knowgym&table=users
+
+CREATE TABLE IF NOT EXISTS muscles (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    muscle_name VARCHAR(50) NOT NULL UNIQUE,
+    exercises JSON NOT NULL
+);
+
+INSERT INTO muscles (muscle_name, exercises) VALUES
+('Traps', '["Dumbbell shrugs", "Barbell shrugs", "Barbell upright row", "Machine shrugs", "Cable shrugs"]'),
+('Front Shoulders', '["Overhead barbell press", "Dumbbell front raises", "Push press", "Arnold press", "Plate front raises"]'),
+('Chest', '["Barbell bench press", "Incline dumbbell press", "Dumbbell flyes", "Decline barbell press", "Dips"]'),
+('Biceps', '["Barbell curl", "Alternating dumbbell curl", "Hammer curl", "Preacher curl", "Concentration curl"]'),
+('Forearms', '["Barbell wrist curl", "Reverse barbell wrist curl", "Farmer\'s walk", "Dumbbell wrist extension", "Isometric plate hold"]'),
+('Obliques', '["Russian twists", "Side plank", "Hanging oblique leg raises", "Dumbbell side bends", "Barbell twist"]'),
+('Abdominals', '["Floor crunch", "Hanging leg raises", "Front plank", "Ab wheel rollout", "Mountain climbers"]'),
+('Quads', '["Barbell squats", "Leg press", "Dumbbell lunges", "Leg extensions", "Bulgarian split squats"]'),
+('Rear Shoulders', '["Dumbbell rear delt fly", "Cable face pull", "Rear delt machine fly", "Dumbbell bent-over row", "Resistance band reverse fly"]'),
+('Lats', '["Pull-ups", "Lat pulldown", "Low pulley row", "Dumbbell pull-over", "Pronated barbell row"]'),
+('Triceps', '["Triceps cable extensions", "French press", "Dips", "Dumbbell triceps kickback", "Overhead dumbbell extensions"]'),
+('Lower Back', '["Conventional deadlift", "Hyperextensions", "Good mornings", "Superman exercise", "Barbell row"]'),
+('Glutes', '["Hip thrust", "Glute bridges", "Deep squats", "Lunges", "Hip abduction machine"]'),
+('Hamstrings', '["Romanian deadlift", "Leg curl", "Good mornings", "Hamstring-focused hip thrust", "Reverse lunges"]'),
+('Calves', '["Standing calf raises", "Seated calf raises", "Calf raises on leg press", "Jump rope", "Tiptoe walk"]');
+

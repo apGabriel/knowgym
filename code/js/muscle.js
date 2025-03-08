@@ -1,4 +1,3 @@
-// Exercise list by muscle
 const exercisesByMuscle = {
     "Traps": [
         "Dumbbell shrugs",
@@ -114,20 +113,32 @@ const exercisesByMuscle = {
     ]
 };
 
-// Función para mostrar los ejercicios
+const muscles = Object.keys(exercisesByMuscle);
+
+function showHint(str) {
+    const datalist = document.getElementById("muscle-list");
+    datalist.innerHTML = "";
+    if (str.length === 0) return;
+
+    const query = str.toLowerCase();
+    muscles.forEach(muscle => {
+        if (muscle.toLowerCase().includes(query)) {
+            const option = document.createElement("option");
+            option.value = muscle;
+            datalist.appendChild(option);
+        }
+    });
+}
+
 function showExercises(muscle) {
     const exerciseList = exercisesByMuscle[muscle] || [];
     const container = document.querySelector('.exercise-list');
 
-    // Limpiar el contenido previo
     container.innerHTML = '';
-
-    // Agregar título
     const title = document.createElement('h2');
     title.textContent = `Ejercicios para ${muscle}`;
     container.appendChild(title);
 
-    // Agregar lista de ejercicios
     const list = document.createElement('ul');
     exerciseList.forEach(exercise => {
         const listItem = document.createElement('li');
@@ -137,15 +148,34 @@ function showExercises(muscle) {
     container.appendChild(list);
 }
 
-// Agregar eventos a los elementos con el atributo data-muscle
 document.addEventListener('DOMContentLoaded', () => {
-    // Selecciona todos los elementos dentro del SVG que tengan el atributo data-muscle
+    const input = document.getElementById("fname");
+    if (input) {
+        input.addEventListener("keyup", (event) => {
+            showHint(event.target.value);
+        });
+        
+        input.addEventListener("change", () => {
+            const selectedMuscle = input.value;
+            if (muscles.includes(selectedMuscle)) {
+                showExercises(selectedMuscle);
+            }
+        });
+
+        input.addEventListener("keypress", (event) => {
+            if (event.key === "Enter") {
+                const selectedMuscle = input.value;
+                if (muscles.includes(selectedMuscle)) {
+                    showExercises(selectedMuscle);
+                }
+            }
+        });
+    }
+
     const musclePaths = document.querySelectorAll('path[data-muscle]');
-    
-    // Agrega el evento click solo a los que tengan data-muscle
     musclePaths.forEach(path => {
         path.addEventListener('click', () => {
-            const muscle = path.getAttribute('data-muscle'); // Lee el valor del atributo data-muscle
+            const muscle = path.getAttribute('data-muscle');
             showExercises(muscle);
         });
     });
