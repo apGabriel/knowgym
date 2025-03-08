@@ -11,6 +11,31 @@ div.muscle-container {
     padding: 20px;
     border-radius: 8px;
     text-align: center;
+    & > div.search {
+        text-align: center;
+        margin-top: 15px;
+        & > form {
+            & > input[type="text"] {
+                padding: 10px;
+                font-size: 1rem;
+                border: 2px solid #d2bc8a;
+                border-radius: 5px;
+                background: linear-gradient(to right, #101010, #3E3E3E);
+                color: white;
+                outline: none;
+                transition: border-color 0.6s ease-in-out;
+            }
+            & > input[type="text"]:focus {
+                border-color: #fff;
+            }
+            & > datalist > option {
+                padding: 5px;
+                font-size: 1rem;
+            } 
+        }      
+    }
+    
+
     & > div.muscle-map {
         display: flex;
         justify-content: space-between;
@@ -131,31 +156,3 @@ div.muscle-container {
     }
 }
 
-.search {
-    text-align: center;
-    margin-top: 15px;
-}
-
-
-.search input[type="text"] {
-    padding: 10px;
-    font-size: 1rem;
-    border: 2px solid #d2bc8a;
-    border-radius: 5px;
-    background: linear-gradient(to right, #101010, #3E3E3E);
-    color: white;
-    outline: none;
-    transition: border-color 0.6s ease-in-out;
-}
-
-.search input[type="text"]:focus {
-    border-color: #fff;
-}
-
-/* Estilo para las sugerencias del datalist */
-datalist option {
-    background-color: #101010;
-    color: white;
-    padding: 5px;
-    font-size: 1rem;
-}

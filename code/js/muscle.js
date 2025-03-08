@@ -1,135 +1,75 @@
-const exercisesByMuscle = {
-    "Traps": [
-        "Dumbbell shrugs",
-        "Barbell shrugs",
-        "Barbell upright row",
-        "Machine shrugs",
-        "Cable shrugs"
-    ],
-    "Front Shoulders": [
-        "Overhead barbell press",
-        "Dumbbell front raises",
-        "Push press",
-        "Arnold press",
-        "Plate front raises"
-    ],
-    "Chest": [
-        "Barbell bench press",
-        "Incline dumbbell press",
-        "Dumbbell flyes",
-        "Decline barbell press",
-        "Dips"
-    ],
-    "Biceps": [
-        "Barbell curl",
-        "Alternating dumbbell curl",
-        "Hammer curl",
-        "Preacher curl",
-        "Concentration curl"
-    ],
-    "Forearms": [
-        "Barbell wrist curl",
-        "Reverse barbell wrist curl",
-        "Farmer's walk",
-        "Dumbbell wrist extension",
-        "Isometric plate hold"
-    ],
-    "Obliques": [
-        "Russian twists",
-        "Side plank",
-        "Hanging oblique leg raises",
-        "Dumbbell side bends",
-        "Barbell twist"
-    ],
-    "Abdominals": [
-        "Floor crunch",
-        "Hanging leg raises",
-        "Front plank",
-        "Ab wheel rollout",
-        "Mountain climbers"
-    ],
-    "Quads": [
-        "Barbell squats",
-        "Leg press",
-        "Dumbbell lunges",
-        "Leg extensions",
-        "Bulgarian split squats"
-    ],
-    "Rear Shoulders": [
-        "Dumbbell rear delt fly",
-        "Cable face pull",
-        "Rear delt machine fly",
-        "Dumbbell bent-over row",
-        "Resistance band reverse fly"
-    ],
-    "Traps Middle": [
-        "Barbell row",
-        "Machine row",
-        "T-bar row",
-        "Face pulls",
-        "Barbell shrugs"
-    ],
-    "Lats": [
-        "Pull-ups",
-        "Lat pulldown",
-        "Low pulley row",
-        "Dumbbell pull-over",
-        "Pronated barbell row"
-    ],
-    "Triceps": [
-        "Triceps cable extensions",
-        "French press",
-        "Dips",
-        "Dumbbell triceps kickback",
-        "Overhead dumbbell extensions"
-    ],
-    "Lower Back": [
-        "Conventional deadlift",
-        "Hyperextensions",
-        "Good mornings",
-        "Superman exercise",
-        "Barbell row"
-    ],
-    "Glutes": [
-        "Hip thrust",
-        "Glute bridges",
-        "Deep squats",
-        "Lunges",
-        "Hip abduction machine"
-    ],
-    "Hamstrings": [
-        "Romanian deadlift",
-        "Leg curl",
-        "Good mornings",
-        "Hamstring-focused hip thrust",
-        "Reverse lunges"
-    ],
-    "Calves": [
-        "Standing calf raises",
-        "Seated calf raises",
-        "Calf raises on leg press",
-        "Jump rope",
-        "Tiptoe walk"
-    ]
-};
+let exercisesByMuscle = {}; // Este será el objeto que contendrá los datos dinámicamente
 
-const muscles = Object.keys(exercisesByMuscle);
+// Función para cargar los datos de los músculos desde el servidor
+function loadMuscles() {
+    fetch('db/getMuscles.php') // Llamamos al archivo PHP que obtiene los datos de la base de datos
+        .then(response => response.json()) // Parseamos la respuesta como JSON
+        .then(data => {
+            // Llenamos el objeto exercisesByMuscle con los datos obtenidos
+            data.forEach(muscle => {
+                exercisesByMuscle[muscle.muscle_name] = JSON.parse(muscle.exercises);
+            });
+        })
+        .catch(error => {
+            console.error('Error al cargar los músculos desde la base de datos:', error);
+        });
+}
 
+// Cargar los músculos cuando la página se carga
+document.addEventListener('DOMContentLoaded', () => {
+    loadMuscles(); // Cargamos los músculos y ejercicios desde la base de datos
+
+    // Función para el manejo de la búsqueda
+    const input = document.getElementById("fname");
+    if (input) {
+        input.addEventListener("keyup", (event) => {
+            showHint(event.target.value); // Llama a la función de sugerencias
+        });
+
+        input.addEventListener("change", () => {
+            const selectedMuscle = input.value;
+            if (Object.keys(exercisesByMuscle).includes(selectedMuscle)) {
+                showExercises(selectedMuscle); // Muestra los ejercicios si se selecciona un músculo válido
+            }
+        });
+
+        input.addEventListener("keypress", (event) => {
+            if (event.key === "Enter") {
+                const selectedMuscle = input.value;
+                if (Object.keys(exercisesByMuscle).includes(selectedMuscle)) {
+                    showExercises(selectedMuscle); // Muestra los ejercicios si se presiona Enter
+                }
+            }
+        });
+    }
+
+    // Manejo de los clics sobre las rutas SVG de músculos
+    const musclePaths = document.querySelectorAll('path[data-muscle]');
+    musclePaths.forEach(path => {
+        path.addEventListener('click', () => {
+            const muscle = path.getAttribute('data-muscle');
+            showExercises(muscle); // Muestra los ejercicios del músculo al hacer clic en la ruta
+        });
+    });
+});
+
+// Función para mostrar las sugerencias de músculos
 function showHint(str) {
     const datalist = document.getElementById("muscle-list");
     datalist.innerHTML = "";
     if (str.length === 0) return;
 
     const query = str.toLowerCase();
-    muscles.forEach(muscle => {
+    Object.keys(exercisesByMuscle).forEach(muscle => {
         if (muscle.toLowerCase().includes(query)) {
             const option = document.createElement("option");
             option.value = muscle;
-            datalist.appendChild(option);
+            datalist.appendChild(option); // Agrega sugerencias de músculos a la lista
         }
     });
 }
 
+// Función para mostrar los ejercicios de un músculo seleccionado
 function showExercises(muscle) {
     const exerciseList = exercisesByMuscle[muscle] || [];
     const container = document.querySelector('.exercise-list');
@@ -143,40 +83,7 @@ function showExercises(muscle) {
     exerciseList.forEach(exercise => {
         const listItem = document.createElement('li');
         listItem.textContent = exercise;
-        list.appendChild(listItem);
+        list.appendChild(listItem); // Agrega cada ejercicio a la lista
     });
     container.appendChild(list);
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-    const input = document.getElementById("fname");
-    if (input) {
-        input.addEventListener("keyup", (event) => {
-            showHint(event.target.value);
-        });
-        
-        input.addEventListener("change", () => {
-            const selectedMuscle = input.value;
-            if (muscles.includes(selectedMuscle)) {
-                showExercises(selectedMuscle);
-            }
-        });
-
-        input.addEventListener("keypress", (event) => {
-            if (event.key === "Enter") {
-                const selectedMuscle = input.value;
-                if (muscles.includes(selectedMuscle)) {
-                    showExercises(selectedMuscle);
-                }
-            }
-        });
-    }
-
-    const musclePaths = document.querySelectorAll('path[data-muscle]');
-    musclePaths.forEach(path => {
-        path.addEventListener('click', () => {
-            const muscle = path.getAttribute('data-muscle');
-            showExercises(muscle);
-        });
-    });
-});

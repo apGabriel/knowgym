@@ -29,5 +29,6 @@ INSERT INTO muscles (muscle_name, exercises) VALUES
 ('Lower Back', '["Conventional deadlift", "Hyperextensions", "Good mornings", "Superman exercise", "Barbell row"]'),
 ('Glutes', '["Hip thrust", "Glute bridges", "Deep squats", "Lunges", "Hip abduction machine"]'),
 ('Hamstrings', '["Romanian deadlift", "Leg curl", "Good mornings", "Hamstring-focused hip thrust", "Reverse lunges"]'),
+('Traps Middle', '["Barbell row", "Machine row", "T-bar row", "Face pulls", "Barbell shrugs"]'),
 ('Calves', '["Standing calf raises", "Seated calf raises", "Calf raises on leg press", "Jump rope", "Tiptoe walk"]');
 
