@@ -155,4 +155,44 @@ div.muscle-container {
         }
     }
 }
+@media screen and (min-width: 441px) and (max-width: 1300px) {
+    div.muscle-container {
+        padding: 10px;
+        & > div.muscle-map {
+            & > div.body {
+                max-width: 80% ;
+                margin: auto ; /* Centrar en tablet */
+            }
+            & > div.exercise-list {
+                position: static ;
+                transform: none ;
+                width: 80% ;
+                max-width: 500px ;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 440px) { /*no esta acabo*/
+    div.muscle-container {
+        width: 100%;
+        padding: 0;
+        padding-top: 20px;
+        & > div.muscle-map {
+            display: flex;
+            flex-direction: column; /* Apila los elementos en columna */
+            align-items: center; /* Centra los elementos en el eje horizontal */
+            gap: 20px; /* Espaciado entre los elementos */
+            & > div.body {
+                max-width: 100%; /* Asegura que el SVG no sobresalga */
+                text-align: center;
+            }
+            & > div.exercise-list {
+                position: static;
+                transform: none;
+            }
+        }
+
+    }
+}
 
