@@ -31,25 +31,47 @@ function logoutUser() {
 
 // Función para alternar la visibilidad del menú en móviles
 function toggleMenu() {
-
     const navLinks = document.querySelector(".nav-links");
-    /* me quede aqui, si que entra en el evento pero no devuelve nada*/
+
     if (!navLinks) {
         console.error("No se encontró el menú en el DOM.");
         return;
     }
-    
-    navLinks.classList.toggle("show");
+
+    // Alternar manualmente los estilos en lugar de usar `.show`
+    if (navLinks.style.visibility === "visible" && navLinks.style.opacity === "1") {
+        navLinks.style.visibility = "hidden";
+        navLinks.style.opacity = "0";
+        navLinks.style.transform = "translateY(-10px)";
+    } else {
+        navLinks.style.visibility = "visible";
+        navLinks.style.opacity = "1";
+        navLinks.style.transform = "translateY(0)";
+    }
 }
+
 
 // Asegurar que el evento de clic se agregue correctamente cuando el DOM esté listo
 document.addEventListener("DOMContentLoaded", () => {
     const menuToggle = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
 
-    if (menuToggle) {
-        menuToggle.addEventListener("click", toggleMenu);
-
-    } else {
-        console.error("Error: No se encontró .menu-toggle en el DOM.");
+    if (!menuToggle || !navLinks) {
+        console.error("Error: No se encontró .menu-toggle o .nav-links en el DOM.");
+        return;
     }
+
+    menuToggle.addEventListener("click", () => {
+        
+        // Alternar la clase show
+        navLinks.classList.toggle("show");
+
+        // Accesibilidad: cambia aria-expanded
+        const isExpanded = navLinks.classList.contains("show");
+        menuToggle.setAttribute("aria-expanded", isExpanded);
+
+        
+    });
 });
+
+

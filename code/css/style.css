@@ -250,16 +250,20 @@ footer {
 
 @media screen and (max-width: 440px) {
     header {
-        &>div.menu-toggle {
+        & > div.menu-toggle {
             display: block;
             margin-right: 50px;
-            & > img{
+            cursor: pointer;
+            & > img {
                 filter: invert(100%);
             }
         }
 
-        &>ul.nav-links {
-            display: none;
+        & > ul.nav-links {
+            /* Ocultar con animación */
+            visibility: hidden;
+            opacity: 0;
+            transform: translateY(-10px);
             flex-direction: column;
             position: absolute;
             top: 50px;
@@ -269,23 +273,17 @@ footer {
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
             padding: 10px 0;
+            transition: all 0.3s ease-in-out;
+        }
 
-            &>li {
-                text-align: left;
-                padding: 10px 20px;
-
-                &>a {
-                    display: block;
-                    width: 100%;
-                }
+        & > ul.nav-links.show {
+            /* Mostrar con animación */
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+            & > li{
+                padding: 20px;
             }
         }
-
-        &>ul.nav-links.show {
-            display: flex;
-            /* Mostrar el menú cuando se añade la clase .show */
-        }
-
     }
-    
 }

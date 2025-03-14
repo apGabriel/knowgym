@@ -18,7 +18,7 @@
             <li><a href="forms.php?form=register">Register</a></li>
         <?php else: ?>
             <!-- Si el usuario está logeado, muestra "Darse de baja" -->
-            <li><a href="#" onclick="logoutUser()">Log out</a></li>
+            <li><a href="index.php" onclick="logoutUser()">Log out</a></li>
             <?php endif; ?>
 
         </li>

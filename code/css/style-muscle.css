@@ -173,7 +173,7 @@ div.muscle-container {
     }
 }
 
-@media screen and (max-width: 440px) { /*no esta acabo*/
+@media screen and (max-width: 440px) { 
     div.muscle-container {
         width: 100%;
         padding: 0;
