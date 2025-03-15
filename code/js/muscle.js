@@ -2,7 +2,15 @@ let exercisesByMuscle = {}; // Este será el objeto que contendrá los datos din
 
 // Función para cargar los datos de los músculos desde el servidor
 function loadMuscles() {
-    fetch('db/getMuscles.php') // Llamamos al archivo PHP que obtiene los datos de la base de datos
+    // Intentamos obtener los músculos desde la primera ruta
+    fetch('db/getMuscles.php')
+        .then(response => {
+            if (!response.ok) {
+                // Si la primera ruta falla, intentamos con la segunda
+                return fetch('../php/db/getMuscles.php');
+            }
+            return response; // Si la primera ruta funciona, usamos esa respuesta
+        })
         .then(response => response.json()) // Parseamos la respuesta como JSON
         .then(data => {
             // Llenamos el objeto exercisesByMuscle con los datos obtenidos
