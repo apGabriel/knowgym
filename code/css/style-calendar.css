@@ -3,8 +3,8 @@ body {
 }
 
 div.calendar {
-    max-width: 720px;
-    margin: 125px auto;
+    /* max-width: 720px;*/
+    margin: 125px calc(100% - 70%);
     background: linear-gradient(to right, #101010, #3E3E3E);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -199,4 +199,58 @@ div.modal {
     position: absolute;
     top: 5px;
     right: 5px;
+}
+@media screen and (min-width: 441px) and (max-width: 1300px) {
+    div.calendar {
+        margin: 125px 105px
+    }
+}
+
+@media screen and (max-width: 440px) {
+    div.calendar {
+        max-width: -webkit-fill-available;
+        width: 100%;
+        margin: 100px auto;
+        border-radius: 8px;
+        font-size: 0.75rem;
+        overflow: hidden;
+    }
+
+    .calendar-header {
+        padding: 6px;
+        font-size: 0.85rem;
+        text-align: center;
+    }
+
+    .nav-btn {
+        font-size: 0.9rem;
+        padding: 5px;
+    }
+
+    .calendar-body {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr); /* Mantiene 7 columnas uniformes */
+        gap: 1px; /* Reduce espacio entre celdas */
+        padding: 3px;
+    }
+
+    .day, .date {
+        font-size: 0.6rem; /* Reduce la fuente */
+        padding: 3px;
+        margin: 1px;
+        min-width: 18px; /* Reduce el tamaño mínimo */
+        max-width: 100%; /* Asegura que las celdas no sobrepasen el ancho */
+        width: 100%;
+        text-align: center;
+    }
+
+    .modal {
+        max-width: 90%;
+        width: 90%;
+        padding: 10px;
+    }
+
+    .modal-content {
+        padding: 8px;
+    }
 }
