@@ -4,286 +4,300 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    width: 100vw;
-    background-image: url(../../low-poly-grid-haikei.svg);
-    color: #333;
+    font-family: Arial, sans-serif; /* Define la fuente principal del sitio */
+    margin: 0; /* Elimina el margen predeterminado del body */
+    padding: 0; /* Elimina el padding predeterminado del body */
+    display: flex; /* Usa flexbox para estructurar el contenido */
+    flex-direction: column; /* Organiza los elementos en una columna */
+    min-height: 100vh; /* Garantiza que el cuerpo tenga al menos la altura total de la pantalla */
+    width: 100vw; /* Asegura que el cuerpo ocupe todo el ancho de la pantalla */
+    background-image: url(../../low-poly-grid-haikei.svg); /* Establece una imagen de fondo */
+    color: #333; /* Define el color de texto principal en tono oscuro */
 }
+
 
 main {
     flex: 1; /* Hace que el contenido principal ocupe el espacio restante */
 }
 
 header {
-    background: linear-gradient(to right, #101010, #3E3E3E);
-    color: #fff;
-    padding: 2.5px 2.5px;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 10;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    padding: 10px 20px;
-
+    background: linear-gradient(to right, #101010, #3E3E3E); /* Fondo con degradado oscuro */
+    color: #fff; /* Color de texto blanco */
+    padding: 2.5px 2.5px; /* Espaciado inicial, sobrescrito más adelante */
+    position: fixed; /* Fija el header en la parte superior */
+    top: 0; /* Lo mantiene en la parte superior de la pantalla */
+    width: 100%; /* Ocupa todo el ancho */
+    z-index: 10; /* Asegura que el header esté por encima de otros elementos */
+    display: flex; /* Usa flexbox para alinear los elementos */
+    justify-content: space-between; /* Separa los elementos a los extremos */
+    align-items: center; /* Centra verticalmente los elementos */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Añade sombra para resaltar el header */
+    padding: 10px 20px; /* Define el padding definitivo */
+    
+    /* Botón de menú para dispositivos pequeños (oculto por defecto) */
     &>div.menu-toggle {
-        display: none;
-        cursor: pointer;
+        display: none; /* Se mostrará solo en dispositivos móviles */
+        cursor: pointer; /* Cambia el cursor al puntero */
         padding: 10px;
         background: none;
         border: none;
 
         &>img {
-            width: 30px;
+            width: 30px; /* Tamaño del icono del menú */
             height: 30px;
         }
     }
 
+    /* Lista de navegación */
     &>ul.nav-links {
-        display: flex;
-        justify-content: flex-end;
-        list-style: none;
+        display: flex; /* Elementos alineados en fila */
+        justify-content: flex-end; /* Alineación a la derecha */
+        list-style: none; /* Elimina los estilos predeterminados de lista */
         padding: 0;
         margin: 0;
-        gap: 15px;
-        margin-right: 50px;
-
+        gap: 15px; /* Espaciado entre elementos */
+        margin-right: 50px; /* Margen derecho para separación */
+        
+        /* Elementos de la lista */
         &>li {
             margin-left: 10px;
 
+            /* Enlaces dentro de la lista */
             &>a {
-                color: #fff;
-                text-decoration: none;
-                font-weight: bold;
+                color: #fff; /* Texto en blanco */
+                text-decoration: none; /* Elimina el subrayado */
+                font-weight: bold; /* Hace que el texto sea más grueso */
             }
 
             &>a:hover {
-                color: #d2bc8a;
+                color: #d2bc8a; /* Color dorado al pasar el cursor */
             }
         }
     }
 }
 
 
+
 section.hero {
-    text-align: center;
-    padding: 50px 20px;
-    color: #fff;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    text-align: center; /* Centra el texto dentro de la sección */
+    padding: 50px 20px; /* Espaciado interno */
+    color: #fff; /* Texto en color blanco */
+    margin-top: 50px; /* Margen superior para separación */
+    margin-bottom: 50px; /* Margen inferior para separación */
 
+    /* Estilos para el título principal */
     &>h1 {
-        font-size: 2.5rem;
-        margin-bottom: 10px;
+        font-size: 2.5rem; /* Tamaño de fuente grande */
+        margin-bottom: 10px; /* Espacio debajo del título */
     }
 
+    /* Estilos para los párrafos */
     &>p {
-        font-size: 1.2rem;
-        margin-bottom: 20px;
-
+        font-size: 1.2rem; /* Tamaño de fuente mediano */
+        margin-bottom: 20px; /* Espacio debajo del párrafo */
     }
 
+    /* Contenedor de los botones */
     &>div.buttons {
-        display: flex;
-        justify-content: center;
+        display: flex; /* Usa flexbox para alinear los botones */
+        justify-content: center; /* Centra los botones horizontalmente */
 
+        /* Estilos para los botones */
         &>button {
-            background: linear-gradient(to right, #956534, #d2bc8a, #956534);
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            margin: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: transform 0.2s, background-color 0.2s;
+            background: linear-gradient(to right, #956534, #d2bc8a, #956534); /* Degradado dorado */
+            border: none; /* Elimina el borde */
+            color: white; /* Texto en blanco */
+            padding: 10px 20px; /* Espaciado interno */
+            margin: 5px; /* Espaciado entre botones */
+            font-size: 1rem; /* Tamaño del texto */
+            cursor: pointer; /* Cambia el cursor a puntero */
+            border-radius: 5px; /* Bordes redondeados */
+            transition: transform 0.2s, background-color 0.2s; /* Animación suave */
         }
 
+        /* Efecto al pasar el cursor por los botones */
         &>button:hover {
-            transform: scale(1.1);
+            transform: scale(1.1); /* Aumenta el tamaño ligeramente */
         }
 
+        /* Estilos para botones deshabilitados */
         &>button.disabled {
-            background: #444;
-            opacity: 0.5;
-            border-radius: 5px;
-            border: 2px solid #d2bc8a;
-            transform: none;
+            background: #444; /* Fondo gris oscuro */
+            opacity: 0.5; /* Reduce la opacidad */
+            border-radius: 5px; /* Bordes redondeados */
+            border: 2px solid #d2bc8a; /* Borde dorado */
+            transform: none; /* Sin efecto de escala */
         }
-
-
     }
 
+    /* Mensaje de advertencia del calendario */
     &>p#calendar-warning {
-        display: none;
-        color: #d2bc8a;
-        font-size: 0.9rem;
-        text-align: center;
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        width: max-content;
+        display: none; /* Oculto por defecto */
+        color: #d2bc8a; /* Color dorado */
+        font-size: 0.9rem; /* Tamaño de fuente pequeño */
+        text-align: center; /* Centra el texto */
+        position: absolute; /* Posición absoluta */
+        left: 50%; /* Centrado horizontal */
+        transform: translateX(-50%); /* Ajuste para centrar */
+        width: max-content; /* Ancho mínimo requerido */
     }
-
-
-    /*& > div.buttons {
-        & > button {
-            background: linear-gradient(to right, #956534, #d2bc8a, #956534);
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            margin: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        & > button:hover {
-            transform: scale(1.1);
-        }
-    }*/
 }
+
 
 section.image-banner {
-    background: black;
-    text-align: center;
+    background: black; /* Fondo negro para la sección */
+    text-align: center; /* Centra el contenido horizontalmente */
 
+    /* Estilos para la imagen dentro de picture */
     &>picture>img {
-        display: block;
-        margin: 0 auto;
+        display: block; /* Evita el espacio extra debajo de la imagen */
+        margin: 0 auto; /* Centra la imagen horizontalmente */
     }
 }
+
 
 section.why-section {
-    color: white;
-    padding: 20px 20px 50px 20px;
-    text-align: center;
+    color: white; /* Texto en color blanco para mayor contraste */
+    padding: 20px 20px 50px 20px; /* Espaciado interno para mayor separación del contenido */
+    text-align: center; /* Centra el contenido dentro de la sección */
 
+    /* Estilos para el título */
     &>h2 {
-        font-size: 2rem;
-        margin-bottom: 20px;
+        font-size: 2rem; /* Tamaño grande para destacar el título */
+        margin-bottom: 20px; /* Espaciado inferior para separación del contenido */
     }
 
+    /* Estilos para los párrafos */
     &>p {
-        font-size: 1rem;
-        line-height: 1.6;
-        margin-bottom: 20px;
+        font-size: 1rem; /* Tamaño de fuente estándar para el texto */
+        line-height: 1.6; /* Espaciado entre líneas para mejorar la legibilidad */
+        margin-bottom: 20px; /* Espaciado inferior para separación entre párrafos */
     }
 }
 
+
 footer {
-    background: linear-gradient(to right, #101010, #3E3E3E);
-    color: #fff;
-    padding: 20px;
-    text-align: right;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-top: auto;
+    background: linear-gradient(to right, #101010, #3E3E3E); /* Fondo con degradado oscuro */
+    color: #fff; /* Color del texto en blanco para contraste */
+    padding: 20px; /* Espaciado interno para separación del contenido */
+    text-align: right; /* Alineación del texto hacia la derecha */
+    display: flex; /* Uso de flexbox para estructurar el footer */
+    flex-direction: row; /* Elementos alineados en fila */
+    justify-content: space-between; /* Distribuye los elementos a los extremos */
+    margin-top: auto; /* Mantiene el footer en la parte inferior de la página */
 
+    /* Estilos para la sección de redes sociales */
     &>div.social-media-links {
-        display: flex;
-        gap: 10px;
-        align-items: center;
+        display: flex; /* Alinea los íconos de redes sociales en fila */
+        gap: 10px; /* Espaciado entre los íconos */
+        align-items: center; /* Centra los íconos verticalmente */
 
+        /* Estilos para cada ícono de red social */
         &>a.social-icon {
-            display: flex;
+            display: flex; /* Permite centrar el contenido dentro del círculo */
             justify-content: center;
             align-items: center;
             width: 30px;
             height: 30px;
-            border-radius: 50%;
-            background-color: #101010;
-            border: 2px solid #d2bc8a;
-            transition: background-color 0.3s, box-shadow 0.3s;
+            border-radius: 50%; /* Hace que el fondo sea circular */
+            background-color: #101010; /* Color de fondo predeterminado */
+            border: 2px solid #d2bc8a; /* Borde con color dorado */
+            transition: background-color 0.3s, box-shadow 0.3s; /* Transición suave */
 
+            /* Estilos para los íconos SVG dentro de los botones */
             &>svg.icon {
-                fill: #d2bc8a;
+                fill: #d2bc8a; /* Color dorado para los íconos */
                 width: 20px;
                 height: 20px;
             }
 
             &>svg.icon:hover {
-                fill: #101010;
+                fill: #101010; /* Cambia de color al pasar el cursor */
             }
         }
 
+        /* Cambia el color de fondo y borde al pasar el cursor */
         &>a.social-icon:hover {
             background-color: #d2bc8a;
             border-color: #101010;
         }
     }
 
+    /* Estilos para la sección de enlaces del footer */
     &>div.footer-links {
-        display: flex;
-        justify-content: right;
-        flex-wrap: wrap;
-        list-style: none;
+        display: flex; /* Alinea los enlaces en fila */
+        justify-content: right; /* Alinea los enlaces a la derecha */
+        flex-wrap: wrap; /* Permite que los enlaces se acomoden si no caben en una fila */
+        list-style: none; /* Elimina los estilos de lista predeterminados */
         padding: 0;
 
+        /* Contenedor de listas de enlaces */
         &>ul {
-            list-style: none;
+            list-style: none; /* Elimina los estilos de lista */
             padding: 0;
-            margin: 10px;
+            margin: 10px; /* Espaciado alrededor de cada lista */
 
+            /* Estilos para los elementos de la lista */
             &>li {
-                margin: 5px 0;
+                margin: 5px 0; /* Espaciado entre elementos */
 
+                /* Estilos para los enlaces */
                 &>a {
-                    color: #d2bc8a;
-                    text-decoration: none;
+                    color: #d2bc8a; /* Color dorado para los enlaces */
+                    text-decoration: none; /* Elimina el subrayado */
                 }
 
                 &>a:hover {
-                    text-decoration: underline;
+                    text-decoration: underline; /* Agrega subrayado al pasar el cursor */
                 }
             }
         }
     }
 }
 
+
 @media screen and (max-width: 440px) {
     header {
+        /* Estilos para el botón del menú en pantallas pequeñas */
         & > div.menu-toggle {
-            display: block;
-            margin-right: 50px;
-            cursor: pointer;
+            display: block; /* Muestra el botón del menú en pantallas pequeñas */
+            margin-right: 50px; /* Agrega margen a la derecha */
+            cursor: pointer; /* Cambia el cursor a puntero */
+            
             & > img {
-                filter: invert(100%);
+                filter: invert(100%); /* Invierte los colores de la imagen (blanco sobre negro) */
             }
         }
 
+        /* Estilos para la lista de navegación */
         & > ul.nav-links {
-            /* Ocultar con animación */
-            visibility: hidden;
-            opacity: 0;
-            transform: translateY(-10px);
-            flex-direction: column;
-            position: absolute;
-            top: 50px;
-            right: 10px;
-            background: rgba(16, 16, 16, 0.9);
-            width: 180px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            padding: 10px 0;
-            transition: all 0.3s ease-in-out;
+            /* Ocultar el menú inicialmente con animación */
+            visibility: hidden; /* Hace que el menú sea invisible */
+            opacity: 0; /* Hace que el menú sea completamente transparente */
+            transform: translateY(-10px); /* Mueve el menú ligeramente hacia arriba */
+            flex-direction: column; /* Coloca los elementos en columna */
+            position: absolute; /* Posiciona el menú fuera del flujo normal del documento */
+            top: 50px; /* Ubica el menú 50px debajo del header */
+            right: 10px; /* Alinea el menú hacia la derecha */
+            background: rgba(16, 16, 16, 0.9); /* Fondo oscuro semi-transparente */
+            width: 180px; /* Establece el ancho del menú */
+            border-radius: 10px; /* Bordes redondeados */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombra para darle profundidad */
+            padding: 10px 0; /* Espaciado interno */
+            transition: all 0.3s ease-in-out; /* Transición suave para la aparición y desaparición */
         }
 
+        /* Estilos para mostrar la lista de navegación cuando se activa el botón */
         & > ul.nav-links.show {
-            /* Mostrar con animación */
-            visibility: visible;
-            opacity: 1;
-            transform: translateY(0);
-            & > li{
-                padding: 20px;
+            /* Mostrar el menú con animación */
+            visibility: visible; /* Hace que el menú sea visible */
+            opacity: 1; /* Hace que el menú sea completamente opaco */
+            transform: translateY(0); /* Restablece la posición original */
+            
+            & > li {
+                padding: 20px; /* Agrega espaciado entre los elementos de la lista */
             }
         }
     }
 }
+

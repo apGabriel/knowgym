@@ -2,20 +2,31 @@ body {
     color: #fff;
 }
 
-/* Muscle Container Styles */
 div.muscle-container {
-    /*max-width: 1200px;*/
+    /* Contenedor principal que alberga la sección del mapa muscular */
     margin: 50px auto;
+    
+    /* Alineación del margen izquierdo y derecho en 0 */
     margin-left: 0;
     margin-right: 0;
+
+    /* Relleno interno del contenedor */
     padding: 20px;
+
+    /* Bordes redondeados para mejorar la estética */
     border-radius: 8px;
+
+    /* Centra el contenido de la sección */
     text-align: center;
+
     & > div.search {
+        /* Centra la sección de búsqueda */
         text-align: center;
         margin-top: 15px;
+
         & > form {
             & > input[type="text"] {
+                /* Estilos para la barra de búsqueda */
                 padding: 10px;
                 font-size: 1rem;
                 border: 2px solid #d2bc8a;
@@ -25,29 +36,37 @@ div.muscle-container {
                 outline: none;
                 transition: border-color 0.6s ease-in-out;
             }
+
             & > input[type="text"]:focus {
+                /* Cambia el color del borde cuando el usuario escribe */
                 border-color: #fff;
             }
+
             & > datalist > option {
+                /* Estilos para las opciones de autocompletado */
                 padding: 5px;
                 font-size: 1rem;
             } 
         }      
     }
     
-
     & > div.muscle-map {
+        /* Contenedor de la estructura del mapa muscular */
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
         width: 100%;
         position: relative;
+
         & > div.body {
+            /* Contenedor del cuerpo muscular */
             position: relative;
             border-radius: 15px;
             padding: 10px;
             margin: 50px;
+
             &::before {
+                /* Agrega un efecto de borde con degradado */
                 content: '';
                 position: absolute;
                 top: -5px;
@@ -55,16 +74,20 @@ div.muscle-container {
                 right: -5px;
                 bottom: -5px;
                 border-radius: 15px;
-                background: linear-gradient(180deg,  #fff, transparent, #fff); /* Degradado */
+                background: linear-gradient(180deg, #fff, transparent, #fff);
                 z-index: -1;
             }
+
             & > svg {
+                /* Estilos para el SVG del mapa muscular */
                 background: linear-gradient(180deg, #fff, transparent, #fff);
                 height: 500px;
                 width: auto;
                 margin: 0 auto;
                 display: block;
+
                 & > g {
+                    /* Estilos para los diferentes grupos musculares */
                     & > path.traps,
                     & > path.front-shoulders,
                     & > path.chest,
@@ -81,118 +104,124 @@ div.muscle-container {
                     & > path.glutes,
                     & > path.hamstrings,
                     & > path.calves {
+                        /* Convierte los grupos musculares en elementos interactivos */
                         cursor: pointer;
                     }
-                    & > path.traps:hover {
-                        fill: #d2bc8a;
-                    }
-                    & > path.front-shoulders:hover {
-                        fill: #d2bc8a;
-                    }
-                    & > path.chest:hover {
-                        fill: #d2bc8a;
-                    }
-                    & > path.biceps:hover {
-                        fill: #d2bc8a;
-                    }
-                    & > path.obliques:hover {
-                        fill: #d2bc8a;
-                    }
-                    & > path.abdominals:hover {
-                        fill: #d2bc8a;
-                    }
-                    & > path.forearms:hover {
-                        fill: #d2bc8a;
-                    }
-                    & > path.quads:hover {
-                        fill: #d2bc8a;
-                    }
-                    & > path.traps-middle:hover {
-                        fill: #d2bc8a;
-                    }
-                    & > path.rear-shoulders:hover {
-                        fill: #d2bc8a;
-                    }
-                    & > path.lats:hover {
-                        fill: #d2bc8a;
-                    }
-                    & > path.triceps:hover {
-                        fill: #d2bc8a;
-                    }
-                    & > path.lowerback:hover {
-                        fill: #d2bc8a;
-                    }
-                    & > path.glutes:hover {
-                        fill: #d2bc8a;
-                    }
-                    & > path.hamstrings:hover {
-                        fill: #d2bc8a;
-                    }
+
+                    /* Cambia el color del músculo al pasar el ratón */
+                    & > path.traps:hover,
+                    & > path.front-shoulders:hover,
+                    & > path.chest:hover,
+                    & > path.biceps:hover,
+                    & > path.obliques:hover,
+                    & > path.abdominals:hover,
+                    & > path.forearms:hover,
+                    & > path.quads:hover,
+                    & > path.traps-middle:hover,
+                    & > path.rear-shoulders:hover,
+                    & > path.lats:hover,
+                    & > path.triceps:hover,
+                    & > path.lowerback:hover,
+                    & > path.glutes:hover,
+                    & > path.hamstrings:hover,
                     & > path.calves:hover {
                         fill: #d2bc8a;
                     }
+
                     & > g.body-map-model {
+                        /* Color de base para el modelo del cuerpo */
                         fill: #fff;
                     }
                 }
             }
         }
-        & > div.exercise-list{
+
+        & > div.exercise-list {
+            /* Contenedor de la lista de ejercicios */
             background: linear-gradient(to right, #101010, #3E3E3E);
             padding: 20px;
             border-radius: 15px;
             border: 2px solid #d2bc8a;
             margin-top: 50px;
             text-align: center;
+
+            /* Posiciona la lista en el centro del mapa muscular */
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
             width: max-content;
+
             & > ul {
+                /* Estilos para la lista de ejercicios */
                 list-style-type: none;
                 padding: 0;
             }
         }
     }
 }
+
 @media screen and (min-width: 441px) and (max-width: 1300px) {
+    /* Estilos específicos para dispositivos con un ancho de pantalla entre 441px y 1300px (tablets y algunos ordenadores) */
+    
     div.muscle-container {
+        /* Reduce el relleno para optimizar el espacio en pantallas medianas */
         padding: 10px;
-        & > div.muscle-map {
-            & > div.body {
-                max-width: 80% ;
-                margin: auto ; /* Centrar en tablet */
-            }
-            & > div.exercise-list {
-                position: static ;
-                transform: none ;
-                width: 80% ;
-                max-width: 500px ;
-            }
-        }
-    }
-}
 
-@media screen and (max-width: 440px) { 
-    div.muscle-container {
-        width: 100%;
-        padding: 0;
-        padding-top: 20px;
         & > div.muscle-map {
-            display: flex;
-            flex-direction: column; /* Apila los elementos en columna */
-            align-items: center; /* Centra los elementos en el eje horizontal */
-            gap: 20px; /* Espaciado entre los elementos */
+            /* Ajustes en el contenedor del mapa muscular */
+
             & > div.body {
-                max-width: 100%; /* Asegura que el SVG no sobresalga */
-                text-align: center;
+                /* Limita el ancho máximo del contenedor del cuerpo muscular */
+                max-width: 80%;
+
+                /* Centra el cuerpo muscular dentro del contenedor */
+                margin: auto;
             }
+
             & > div.exercise-list {
+                /* Evita que la lista de ejercicios se posicione de forma absoluta */
                 position: static;
+
+                /* Elimina la transformación para que la lista no se desplace */
                 transform: none;
+
+                /* Ajusta el ancho de la lista para una mejor visualización en pantallas medianas */
+                width: 80%;
+                max-width: 500px;
             }
         }
-
     }
 }
+
+
+@media screen and (max-width: 440px) {  
+    /* Estilos específicos para dispositivos con un ancho máximo de 440px (móviles) */  
+    
+    div.muscle-container {  
+        /* Ocupa todo el ancho disponible para optimizar el diseño en pantallas pequeñas */  
+        width: 100%;  
+        padding: 0;  
+        padding-top: 20px; /* Añade espacio en la parte superior para separación visual */  
+
+        & > div.muscle-map {  
+            /* Usa flexbox para organizar los elementos verticalmente en pantallas pequeñas */  
+            display: flex;  
+            flex-direction: column; /* Apila los elementos en columna */  
+            align-items: center; /* Centra los elementos en el eje horizontal */  
+            gap: 20px; /* Añade espacio entre los elementos para mejorar la legibilidad */  
+
+            & > div.body {  
+                /* Permite que el SVG se adapte al ancho completo sin desbordar */  
+                max-width: 100%;  
+                text-align: center; /* Centra el contenido dentro del contenedor */  
+            }  
+
+            & > div.exercise-list {  
+                /* Evita que la lista de ejercicios tenga una posición absoluta */  
+                position: static;  
+                transform: none; /* Elimina transformaciones para mantener su alineación normal */  
+            }  
+        }  
+    }  
+}  
 

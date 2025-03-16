@@ -3,137 +3,150 @@ body {
 }
 
 div.calendar {
-    /* max-width: 720px;*/
-    margin: 125px calc(100% - 70%);
-    background: linear-gradient(to right, #101010, #3E3E3E);
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
+    margin: 125px calc(100% - 70%); /* Centra el calendario con márgenes calculados */
+    background: linear-gradient(to right, #101010, #3E3E3E); /* Fondo con un degradado */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave para darle profundidad */
+    overflow: hidden; /* Oculta cualquier contenido fuera del contenedor */
+    
     & > .calendar-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        display: flex; /* Usamos Flexbox para la disposición */
+        justify-content: space-between; /* Espaciado entre los elementos */
+        align-items: center; /* Alinea los elementos al centro */
         padding: 10px;
-        background: linear-gradient(to right, #956534, #d2bc8a, #956534);
-        color: #fff;
+        background: linear-gradient(to right, #956534, #d2bc8a, #956534); /* Fondo con degradado */
+        color: #fff; /* Color blanco para el texto */
     
         & > button.nav-btn {
-            flex: 0 0 10%;
+            flex: 0 0 10%; /* El botón ocupa el 10% del contenedor */
             display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: transparent;
-            color: white;
-            border: none;
-            padding: px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s;
+            justify-content: center; /* Centra el contenido dentro del botón */
+            align-items: center; /* Centra el contenido dentro del botón */
+            background-color: transparent; /* Fondo transparente */
+            color: white; /* Texto blanco */
+            border: none; /* Sin borde */
+            padding: 0; /* Sin relleno por defecto */
+            font-size: 1.2rem; /* Tamaño de fuente */
+            font-weight: bold; /* Texto en negrita */
+            cursor: pointer; /* Cambia el cursor al puntero al pasar sobre el botón */
+            transition: background-color 0.3s; /* Transición suave en el cambio de color de fondo */
         }
     
         & > button.nav-btn:hover {
-            transform: scale(1.1);
+            transform: scale(1.1); /* Aumenta el tamaño del botón al pasar el cursor */
         }
     
         & > span#calendar-header {
-            flex: 0 0 60%;
-            text-align: center;
-            font-size: 1.5rem;
-            font-weight: bold;
+            flex: 0 0 60%; /* El título ocupa el 60% del contenedor */
+            text-align: center; /* Centra el texto */
+            font-size: 1.5rem; /* Tamaño de fuente */
+            font-weight: bold; /* Texto en negrita */
         }
     }
+
     & > div.calendar-body {
-        display: grid;
-        grid-template-columns: repeat(7, 1fr);
+        display: grid; /* Usamos Grid para la disposición de los días */
+        grid-template-columns: repeat(7, 1fr); /* Crea 7 columnas (una por cada día de la semana) */
         padding: 10px;
-        background-color: #101010;
-        & > div.day,
-        & > div.date {
+        background-color: #101010; /* Fondo oscuro para el cuerpo del calendario */
+        
+        & > div.day, /* Estilos para los días de la semana */
+        & > div.date { /* Estilos para las fechas */
             padding: 10px;
             margin: 5px;
             text-align: center;
-            border-radius: 5px;
+            border-radius: 5px; /* Bordes redondeados para las celdas */
             font-size: 1rem;
-            transition: transform 0.3s, background-color 0.3s;
+            transition: transform 0.3s, background-color 0.3s; /* Transición suave en hover */
         }
+        
         & > div.day {
-            font-weight: bold;
-            color: #d2bc8a;
-            text-transform: uppercase;
+            font-weight: bold; /* Días de la semana en negrita */
+            color: #d2bc8a; /* Color dorado */
+            text-transform: uppercase; /* Convertir texto a mayúsculas */
         }
+        
         & > div.date.empty {
-            visibility: hidden;
-            background-color: transparent;
-            pointer-events: none;
+            visibility: hidden; /* Oculta los días vacíos */
+            background-color: transparent; /* Fondo transparente */
+            pointer-events: none; /* Desactiva los eventos de clic */
         }
+        
         & > div.date {
-            background-color: #333;
-            cursor: pointer;
+            background-color: #333; /* Fondo oscuro para las fechas */
+            cursor: pointer; /* Cursor de puntero al pasar sobre las fechas */
+            
             &:hover {
-                transform: scale(1.1);
-                background-color: #444;
+                transform: scale(1.1); /* Aumenta el tamaño al pasar el cursor */
+                background-color: #444; /* Fondo más claro al pasar el cursor */
             }
         }
+        
         & > div.today {
-            background-color: #7d5228;
-            color: #fff;
-            font-weight: bold;
+            background-color: #7d5228; /* Fondo color especial para el día de hoy */
+            color: #fff; /* Texto blanco */
+            font-weight: bold; /* Texto en negrita */
+            
             &:hover {
-                transform: scale(1.1);
-                background-color: #7d5228;
+                transform: scale(1.1); /* Aumenta el tamaño al pasar el cursor */
+                background-color: #7d5228; /* Fondo sin cambio al pasar el cursor */
             }
         }
     }
 }
 
-div.modal {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    background: linear-gradient(to right, #101010, #3E3E3E);
-    border-radius: 10px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
-    width: 90%;
-    max-width: 400px;
-    padding: 20px;
-    color: #fff;
 
+div.modal {
+    display: none; /* Inicialmente oculto */
+    position: fixed; /* Fijado en la pantalla */
+    top: 50%; /* Centrado verticalmente */
+    left: 50%; /* Centrado horizontalmente */
+    transform: translate(-50%, -50%); /* Ajuste para lograr un centrado perfecto */
+    z-index: 1; /* Asegura que el modal esté encima de otros elementos */
+    background: linear-gradient(to right, #101010, #3E3E3E); /* Fondo con un degradado oscuro */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* Sombra para el modal */
+    width: 90%; /* Ancho del 90% del contenedor */
+    max-width: 400px; /* Ancho máximo */
+    padding: 20px; /* Espaciado interno */
+    color: #fff; /* Texto blanco */
+    
     & > div.modal-content {
         position: relative;
         padding: 20px;
         display: flex;
-        flex-direction: column;
-        gap: 15px;
+        flex-direction: column; /* Organiza los elementos en una columna */
+        gap: 15px; /* Espaciado entre los elementos */
+        
         & > h2 {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin: 0;
-            text-align: center;
+            font-size: 1.5rem; /* Tamaño de fuente */
+            font-weight: bold; /* Texto en negrita */
+            margin: 0; /* Elimina márgenes */
+            text-align: center; /* Centrado */
         }
-        &  > p#selected-date {
+
+        & > p#selected-date {
             font-size: 1rem;
             margin: 0;
             text-align: center;
         }
+
         & > textarea {
-            width: 100%;
-            height: 100px;
-            margin: 10px 0;
-            padding: 10px;
-            border: 1px solid #666;
-            border-radius: 5px;
-            font-size: 1rem;
-            background-color: #fff;
-            color: #2a2a2a;
+            width: 100%; /* Ocupa el 100% del ancho */
+            height: 100px; /* Alto fijo */
+            margin: 10px 0; /* Márgenes superior e inferior */
+            padding: 10px; /* Espaciado interno */
+            border: 1px solid #666; /* Borde gris */
+            border-radius: 5px; /* Bordes redondeados */
+            font-size: 1rem; /* Tamaño de la fuente */
+            background-color: #fff; /* Fondo blanco */
+            color: #2a2a2a; /* Texto oscuro */
         }
+
         & > div.time-inputs {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 10px; /* Espaciado entre los elementos */
     
             & > label {
                 font-size: 0.9rem;
@@ -141,116 +154,130 @@ div.modal {
             }
     
             & > input {
-                padding: 8px;
-                border: 1px solid #666;
-                border-radius: 5px;
-                font-size: 1rem;
-                background-color: #fff;
+                padding: 8px; /* Espaciado interno */
+                border: 1px solid #666; /* Borde gris */
+                border-radius: 5px; /* Bordes redondeados */
+                font-size: 1rem; /* Tamaño de la fuente */
+                background-color: #fff; /* Fondo blanco */
             }
         }
+
         & > div.modal-buttons {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-between; /* Distribuye los botones a los lados */
     
             & > button {
-                padding: 10px 15px;
-                font-size: 1rem;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
+                padding: 10px 15px; /* Espaciado interno */
+                font-size: 1rem; /* Tamaño de la fuente */
+                border: none; /* Sin borde */
+                border-radius: 5px; /* Bordes redondeados */
+                cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
             }
     
             & > button#save-event {
-                background-color: #28a745;
-                color: #fff;
+                background-color: #28a745; /* Color verde */
+                color: #fff; /* Texto blanco */
             }
     
             & > button#save-event:hover {
-                background-color: #218838;
+                background-color: #218838; /* Color verde más oscuro al hacer hover */
             }
     
             & > button#delete-event {
-                background-color: #dc3545;
-                color: #fff;
+                background-color: #dc3545; /* Color rojo */
+                color: #fff; /* Texto blanco */
             }
     
             & > button#delete-event:hover {
-                background-color: #c82333;
+                background-color: #c82333; /* Color rojo más oscuro al hacer hover */
             }
         }
+
         & > span.close {
             position: absolute;
             top: 10px;
-            right: 10px;
+            right: 10px; /* Posiciona el ícono de cierre en la esquina superior derecha */
             font-size: 1.5rem;
         }
+
         & > span.close:hover {
-            cursor: pointer;
+            cursor: pointer; /* Cambia el cursor a puntero al pasar sobre el ícono */
         }
-    }    
+    }
 }
+
 
 .event-indicator {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    background-color: red;
-    border-radius: 50%;
-    position: absolute;
-    top: 5px;
-    right: 5px;
+    display: inline-block; /* Hace que el indicador sea un bloque en línea */
+    width: 8px; /* Ancho de 8px */
+    height: 8px; /* Alto de 8px */
+    background-color: red; /* Color de fondo rojo */
+    border-radius: 50%; /* Hace que el indicador sea redondo */
+    position: absolute; /* Posiciona el indicador de forma absoluta dentro del contenedor */
+    top: 5px; /* Posición de 5px desde la parte superior */
+    right: 5px; /* Posición de 5px desde el lado derecho */
 }
+
+/* Estilo para pantallas con un ancho entre 441px y 1300px */
 @media screen and (min-width: 441px) and (max-width: 1300px) {
     div.calendar {
-        margin: 125px 105px
+        margin: 125px 105px; /* Aplica márgenes de 125px en la parte superior e inferior, y 105px en los lados */
     }
 }
 
+
 @media screen and (max-width: 440px) {
+    /* Ajusta el tamaño del calendario */
     div.calendar {
-        max-width: -webkit-fill-available;
-        width: 100%;
-        margin: 100px auto;
-        border-radius: 8px;
-        font-size: 0.75rem;
-        overflow: hidden;
+        max-width: -webkit-fill-available; /* Asegura que el calendario ocupe todo el ancho disponible */
+        width: 100%; /* Asegura que el calendario tenga un ancho del 100% */
+        margin: 100px auto; /* Centra el calendario en la pantalla con márgenes en la parte superior e inferior */
+        border-radius: 8px; /* Bordes redondeados */
+        font-size: 0.75rem; /* Reduce el tamaño de la fuente */
+        overflow: hidden; /* Oculta cualquier contenido que sobresalga */
     }
 
+    /* Ajuste para el encabezado del calendario */
     .calendar-header {
-        padding: 6px;
-        font-size: 0.85rem;
-        text-align: center;
+        padding: 6px; /* Espaciado alrededor del encabezado */
+        font-size: 0.85rem; /* Reduce el tamaño de la fuente del encabezado */
+        text-align: center; /* Centra el texto del encabezado */
     }
 
+    /* Ajuste para los botones de navegación */
     .nav-btn {
-        font-size: 0.9rem;
-        padding: 5px;
+        font-size: 0.9rem; /* Reduce el tamaño de la fuente de los botones de navegación */
+        padding: 5px; /* Espaciado dentro de los botones */
     }
 
+    /* Ajuste para el cuerpo del calendario */
     .calendar-body {
         display: grid;
         grid-template-columns: repeat(7, 1fr); /* Mantiene 7 columnas uniformes */
-        gap: 1px; /* Reduce espacio entre celdas */
-        padding: 3px;
+        gap: 1px; /* Reduce el espacio entre las celdas */
+        padding: 3px; /* Espaciado dentro del cuerpo del calendario */
     }
 
+    /* Ajuste para los días y fechas */
     .day, .date {
-        font-size: 0.6rem; /* Reduce la fuente */
-        padding: 3px;
-        margin: 1px;
-        min-width: 18px; /* Reduce el tamaño mínimo */
-        max-width: 100%; /* Asegura que las celdas no sobrepasen el ancho */
-        width: 100%;
-        text-align: center;
+        font-size: 0.6rem; /* Reduce el tamaño de la fuente de los días y las fechas */
+        padding: 3px; /* Espaciado dentro de las celdas de los días y fechas */
+        margin: 1px; /* Espaciado entre las celdas */
+        min-width: 18px; /* Establece un tamaño mínimo para las celdas */
+        max-width: 100%; /* Asegura que las celdas no sobrepasen el ancho disponible */
+        width: 100%; /* Hace que las celdas ocupen el 100% del ancho disponible */
+        text-align: center; /* Centra el texto dentro de las celdas */
     }
 
+    /* Ajustes para el modal */
     .modal {
-        max-width: 90%;
-        width: 90%;
-        padding: 10px;
+        max-width: 90%; /* Limita el ancho máximo del modal al 90% */
+        width: 90%; /* Establece el ancho del modal al 90% */
+        padding: 10px; /* Añade espaciado dentro del modal */
     }
 
+    /* Ajuste para el contenido del modal */
     .modal-content {
-        padding: 8px;
+        padding: 8px; /* Espaciado dentro del contenido del modal */
     }
 }
