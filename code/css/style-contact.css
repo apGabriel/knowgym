@@ -1,0 +1,122 @@
+body {
+    color: #fff;
+    background-color: #101010;
+    font-family: Arial, sans-serif;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+section.form-container {
+    margin: 50px auto;
+    width: 90%;
+    max-width: 400px;
+    background: linear-gradient(to right, #101010, #3E3E3E);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    text-align: center;
+}
+
+.form-box h2 {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.form-box p {
+    font-size: 1rem;
+    color: #ccc;
+}
+
+.success-message, .error-message {
+    font-size: 0.9rem;
+    font-weight: bold;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.success-message {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.error-message {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #fff; /* Blanco en lugar de dorado */
+    margin-bottom: 5px;
+}
+
+.input-group input,
+.input-group textarea {
+    width: calc(100% - 20px); /* Ahora no sobrepasa el contenedor */
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #666;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #2a2a2a;
+    display: block;
+    margin: 0 auto;
+}
+
+.input-group textarea {
+    resize: none;
+}
+
+button {
+    width: calc(100% - 20px);
+    padding: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: linear-gradient(to right, #956534, #d2bc8a, #956534);
+    color: white;
+    transition: transform 0.3s, background-color 0.3s;
+    display: block;
+    margin: 10px auto 0;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background: linear-gradient(to right, #7d5228, #bfa374, #7d5228);
+}
+
+/* Responsive */
+@media screen and (max-width: 440px) {
+    section.form-container {
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    .form-box h2 {
+        font-size: 1.2rem;
+    }
+
+    .input-group label {
+        font-size: 0.85rem;
+    }
+
+    button {
+        font-size: 0.9rem;
+    }
+}

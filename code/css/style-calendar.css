@@ -265,7 +265,6 @@ div.modal {
         margin: 1px; /* Espaciado entre las celdas */
         min-width: 18px; /* Establece un tamaño mínimo para las celdas */
         max-width: 100%; /* Asegura que las celdas no sobrepasen el ancho disponible */
-        width: 100%; /* Hace que las celdas ocupen el 100% del ancho disponible */
         text-align: center; /* Centra el texto dentro de las celdas */
     }
 

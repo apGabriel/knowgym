@@ -20,7 +20,7 @@
             <!-- Si el usuario está logeado, muestra "Darse de baja" -->
             <li><a href="index.php" onclick="logoutUser()">Log out</a></li>
             <?php endif; ?>
-        <li><a href="#">Contact</a></li>
+        <li><a href="contact.php">Contact</a></li>
     </ul>
     <script src="../js/menu.js"></script>
 
