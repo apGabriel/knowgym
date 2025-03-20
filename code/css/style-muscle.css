@@ -225,3 +225,47 @@ div.muscle-container {
     }  
 }  
 
+
+/* Estilo del modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    background: linear-gradient(to right, #101010, #3E3E3E);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    width: 90%;
+    max-width: 400px;
+    padding: 20px;
+    color: white;
+    text-align: center;
+}
+
+.modal-content {
+    position: relative;
+    padding: 15px;
+}
+
+.modal img {
+    width: 100%;
+    max-height: 250px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.modal p {
+    margin-top: 10px;
+    font-size: 1rem;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+

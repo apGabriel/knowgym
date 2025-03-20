@@ -8,27 +8,91 @@ CREATE TABLE users (
 
 http://localhost/phpmyadmin/index.php?route=/sql&pos=0&db=knowgym&table=users
 
-CREATE TABLE IF NOT EXISTS muscles (
+CREATE TABLE muscles (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    muscle_name VARCHAR(50) NOT NULL UNIQUE,
-    exercises JSON NOT NULL
+    muscle_name VARCHAR(50) NOT NULL UNIQUE
 );
 
-INSERT INTO muscles (muscle_name, exercises) VALUES
-('Traps', '["Dumbbell shrugs", "Barbell shrugs", "Barbell upright row", "Machine shrugs", "Cable shrugs"]'),
-('Front Shoulders', '["Overhead barbell press", "Dumbbell front raises", "Push press", "Arnold press", "Plate front raises"]'),
-('Chest', '["Barbell bench press", "Incline dumbbell press", "Dumbbell flyes", "Decline barbell press", "Dips"]'),
-('Biceps', '["Barbell curl", "Alternating dumbbell curl", "Hammer curl", "Preacher curl", "Concentration curl"]'),
-('Forearms', '["Barbell wrist curl", "Reverse barbell wrist curl", "Farmer\'s walk", "Dumbbell wrist extension", "Isometric plate hold"]'),
-('Obliques', '["Russian twists", "Side plank", "Hanging oblique leg raises", "Dumbbell side bends", "Barbell twist"]'),
-('Abdominals', '["Floor crunch", "Hanging leg raises", "Front plank", "Ab wheel rollout", "Mountain climbers"]'),
-('Quads', '["Barbell squats", "Leg press", "Dumbbell lunges", "Leg extensions", "Bulgarian split squats"]'),
-('Rear Shoulders', '["Dumbbell rear delt fly", "Cable face pull", "Rear delt machine fly", "Dumbbell bent-over row", "Resistance band reverse fly"]'),
-('Lats', '["Pull-ups", "Lat pulldown", "Low pulley row", "Dumbbell pull-over", "Pronated barbell row"]'),
-('Triceps', '["Triceps cable extensions", "French press", "Dips", "Dumbbell triceps kickback", "Overhead dumbbell extensions"]'),
-('Lower Back', '["Conventional deadlift", "Hyperextensions", "Good mornings", "Superman exercise", "Barbell row"]'),
-('Glutes', '["Hip thrust", "Glute bridges", "Deep squats", "Lunges", "Hip abduction machine"]'),
-('Hamstrings', '["Romanian deadlift", "Leg curl", "Good mornings", "Hamstring-focused hip thrust", "Reverse lunges"]'),
-('Traps Middle', '["Barbell row", "Machine row", "T-bar row", "Face pulls", "Barbell shrugs"]'),
-('Calves', '["Standing calf raises", "Seated calf raises", "Calf raises on leg press", "Jump rope", "Tiptoe walk"]');
 
+CREATE TABLE exercises (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    muscle_id INT NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    gif VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    FOREIGN KEY (muscle_id) REFERENCES muscles(id) ON DELETE CASCADE
+);
+
+
+INSERT INTO muscles (muscle_name) VALUES
+('Traps'),
+('Front Shoulders'),
+('Chest'),
+('Biceps'),
+('Forearms'),
+('Obliques'),
+('Abdominals'),
+('Quads'),
+('Rear Shoulders'),
+('Lats'),
+('Triceps'),
+('Lower Back'),
+('Glutes'),
+('Hamstrings'),
+('Traps Middle'),
+('Calves');
+
+INSERT INTO exercises (muscle_id, name, gif, description) 
+VALUES
+-- Abdominals
+((SELECT id FROM muscles WHERE muscle_name = 'Abdominals'), 'Classic Mountain Climber', 'img/Classic-Mountain-Climber.webp', 'Realiza saltos alternando las piernas hacia el pecho en una posición de plancha.'),
+((SELECT id FROM muscles WHERE muscle_name = 'Abdominals'), 'Classic Russian Twists', 'img/Classic-Russian-Twists.webp', 'Sentado con las piernas elevadas, gira el torso de un lado a otro mientras sostienes un peso.'),
+((SELECT id FROM muscles WHERE muscle_name = 'Abdominals'), 'Classic V-Ups', 'img/Classic-V-Ups.webp', 'Acostado, levanta simultáneamente las piernas y el torso, tocando tus pies con las manos.'),
+((SELECT id FROM muscles WHERE muscle_name = 'Abdominals'), 'Crunches', 'img/crunches.webp', 'Realiza flexiones del torso sobre el abdomen.'),
+((SELECT id FROM muscles WHERE muscle_name = 'Abdominals'), 'Knee raises machine', 'img/Knee-raises-machine.webp', 'Sujétate de una máquina y lleva las rodillas hacia el pecho desde una posición suspendida.'),
+
+-- Biceps
+((SELECT id FROM muscles WHERE muscle_name = 'Biceps'), 'Bicep Curl Barbell', 'img/curl-biceps-barraZ.webp', 'Levanta la barra hacia el pecho con los codos fijos en los costados.'),
+((SELECT id FROM muscles WHERE muscle_name = 'Biceps'), 'Bicep Curl Cable', 'img/curl-biceps-cable.webp', 'Utiliza una máquina de cable para realizar el curl de bíceps con un agarre recto.'),
+((SELECT id FROM muscles WHERE muscle_name = 'Biceps'), 'Bicep Curl Dumbbell', 'img/curl-biceps.webp', 'Realiza el curl de bíceps con mancuernas, manteniendo los codos fijos.'),
+((SELECT id FROM muscles WHERE muscle_name = 'Biceps'), 'Hammer Curl', 'img/curl-martillo-alterno.webp', 'Ejecuta el curl con mancuernas en agarre de martillo, alternando ambos brazos.'),
+((SELECT id FROM muscles WHERE muscle_name = 'Biceps'), 'Hammer Curl Machine', 'img/curl-martillo-maquina.webp', 'Utiliza la máquina para realizar curl de bíceps con agarre de martillo.'),
+
+-- Calves
+((SELECT id FROM muscles WHERE muscle_name = 'Calves'), 'Calf Raise Machine', 'img/Calf-raise-machine-both-legs.webp', 'Eleva los talones usando la máquina para trabajar las pantorrillas.'),
+((SELECT id FROM muscles WHERE muscle_name = 'Calves'), 'Calf Raises Leg Press', 'img/Calf-raises-leg-press.webp', 'Realiza elevaciones de talones en la máquina de prensa de piernas.'),
+((SELECT id FROM muscles WHERE muscle_name = 'Calves'), 'Standing Barbell Calf Raises', 'img/standing-barbell-calf-raises.webp', 'Eleva los talones estando de pie con una barra sobre los hombros.'),
+((SELECT id FROM muscles WHERE muscle_name = 'Calves'), 'Toe Raises', 'img/toe-raises.webp', 'Levanta los dedos de los pies mientras mantienes el talón en el suelo.'),
+
+-- Chest
+((SELECT id FROM muscles WHERE muscle_name = 'Chest'), 'Dumbbell Flyes', 'img/aperturas-banco.webp', 'Abre los brazos hacia los lados con mancuernas y luego júntalas en el centro.'),
+((SELECT id FROM muscles WHERE muscle_name = 'Chest'), 'Machine Flyes', 'img/aperturas-maquina.webp', 'Realiza aperturas en una máquina de pectorales para trabajar el pecho.'),
+((SELECT id FROM muscles WHERE muscle_name = 'Chest'), 'Push-Ups', 'img/flexiones.webp', 'Haz flexiones de brazos, bajando el cuerpo hasta casi tocar el suelo.'),
+((SELECT id FROM muscles WHERE muscle_name = 'Chest'), 'Decline Barbell Bench Press', 'img/press-banca-declinado.webp', 'Realiza el press de banca en una posición declinada para trabajar la parte inferior del pecho.'),
+((SELECT id FROM muscles WHERE muscle_name = 'Chest'), 'Barbell Bench Press', 'img/press-banca.webp', 'Empuja la barra desde el pecho en un banco plano.'),
+
+-- Forearms
+((SELECT id FROM muscles WHERE muscle_name = 'Forearms'), 'Dumbbell Forearm Curls', 'img/dumbbell-forearm-curls.webp', 'Levanta las mancuernas utilizando únicamente los antebrazos.'),
+((SELECT id FROM muscles WHERE muscle_name = 'Forearms'), 'Reverse Dumbbell Forearm Curls', 'img/reverse-dumbbell-forearm-curls.webp', 'Levanta las mancuernas con las palmas hacia abajo usando los antebrazos.'),
+((SELECT id FROM muscles WHERE muscle_name = 'Forearms'), 'Seated Finger Curls', 'img/seated-finger-curls.webp', 'Utiliza mancuernas o barra mientras realizas flexiones de muñeca sentado.'),
+((SELECT id FROM muscles WHERE muscle_name = 'Forearms'), 'Wrist Roller', 'img/wrist-roller.webp', 'Usa un rodillo para trabajar la fuerza de muñeca levantando peso con una cuerda.'),
+
+-- Front Shoulders
+((SELECT id FROM muscles WHERE muscle_name = 'Front Shoulders'), 'Dumbbell Front Raise', 'img/Front-raise-dumbbell-one-arm.webp', 'Levanta las mancuernas al frente hasta la altura de los ojos.'),
+((SELECT id FROM muscles WHERE muscle_name = 'Front Shoulders'), 'Plate Finger Curls', 'img/Finger-curls with-plate.webp', 'Sujeta un plato con ambas manos y realiza flexiones de muñeca.'),
+((SELECT id FROM muscles WHERE muscle_name = 'Front Shoulders'), 'Seated Dumbbell Shoulder Press', 'img/Seated-dumbbell-shoulder-press..webp', 'Presiona las mancuernas hacia arriba desde los hombros mientras estás sentado.'),
+((SELECT id FROM muscles WHERE muscle_name = 'Front Shoulders'), 'Shoulder Press Machine', 'img/shoulder-press-machine.webp', 'Presiona la máquina para trabajar los hombros con el agarre adecuado.'),
+
+-- Glutes
+((SELECT id FROM muscles WHERE muscle_name = 'Glutes'), 'Donkey Kick Machine', 'img/donkey-kick-machine.webp', 'Trabaja los glúteos levantando las piernas hacia atrás en la máquina de patada de burro.'),
+((SELECT id FROM muscles WHERE muscle_name = 'Glutes'), 'Hip Thrust Barbell', 'img/hip-trusth-barbell.webp', 'Sujeta una barra y realiza el empuje de cadera para activar los glúteos.'),
+((SELECT id FROM muscles WHERE muscle_name = 'Glutes'), 'Knee Raises Machine', 'img/Knee-raises-machine.webp', 'Sujétate de una máquina y eleva las rodillas hacia el pecho mientras trabajas los glúteos.'),
+((SELECT id FROM muscles WHERE muscle_name = 'Glutes'), 'Dumbbell Squats', 'img/squats-dumbbells.webp', 'Realiza sentadillas con mancuernas a los lados del cuerpo.'),
+((SELECT id FROM muscles WHERE muscle_name = 'Glutes'), 'Squats', 'img/squats.webp', 'Realiza sentadillas con el peso corporal o con barra para trabajar los glúteos.'),
+
+-- Hamstrings
+((SELECT id FROM muscles WHERE muscle_name = 'Hamstrings'), 'Deadlifts Multi-Press', 'img/deadlifts-multi-press.webp', 'Realiza el deadlift utilizando múltiples equipos para activar los isquiotibiales.'),
+((SELECT id FROM muscles WHERE muscle_name = 'Hamstrings'), 'Donkey Kick Machine', 'img/donkey-kick-machine.webp', 'Usa la máquina para patadas de burro, enfocándote en los glúteos y los isquiotibiales.'),
+((SELECT id FROM muscles WHERE muscle_name = 'Hamstrings'), 'Good Morning', 'img/good-morning.webp', 'Realiza el movimiento de buenos días con barra para trabajar la cadena posterior.'),
+((SELECT id FROM muscles WHERE muscle_name = 'Hamstrings'), 'Nordic Hamstring Curls', 'img/Nordic-Hamstring-Curls.webp', 'Realiza flexiones de piernas mientras estás de rodillas para trabajar los isquiotibiales.'),
+((SELECT id FROM muscles WHERE muscle_name = 'Hamstrings'), 'Romanian Deadlift Dumbbells', 'img/Romanian-deadlift-dumbbells.webp', 'Usa mancuernas para realizar el deadlift rumano, enfocándote en los isquiotibiales.');

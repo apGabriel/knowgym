@@ -1,67 +1,72 @@
-let exercisesByMuscle = {}; // Este será el objeto que contendrá los datos dinámicamente
+let exercisesByMuscle = {}; // Objeto que contendrá los ejercicios dinámicamente
+let exerciseDetails = {}; // Objeto para almacenar detalles de los ejercicios (GIF y descripción)
 
-// Función para cargar los datos de los músculos desde el servidor
+// Función para cargar los datos de los músculos desde la base de datos
 function loadMuscles() {
-    // Intentamos obtener los músculos desde la primera ruta
     fetch('db/getMuscles.php')
-        .then(response => {
-            if (!response.ok) {
-                // Si la primera ruta falla, intentamos con la segunda
-                return fetch('../php/db/getMuscles.php');
-            }
-            return response; // Si la primera ruta funciona, usamos esa respuesta
-        })
-        .then(response => response.json()) // Parseamos la respuesta como JSON
+        .then(response => response.ok ? response : fetch('../php/db/getMuscles.php'))
+        .then(response => response.json())
         .then(data => {
-            // Llenamos el objeto exercisesByMuscle con los datos obtenidos
             data.forEach(muscle => {
                 exercisesByMuscle[muscle.muscle_name] = JSON.parse(muscle.exercises);
             });
         })
-        .catch(error => {
-            console.error('Error al cargar los músculos desde la base de datos:', error);
-        });
+        .catch(error => console.error('Error al cargar los músculos:', error));
 }
 
-// Cargar los músculos cuando la página se carga
-document.addEventListener('DOMContentLoaded', () => {
-    loadMuscles(); // Cargamos los músculos y ejercicios desde la base de datos
+// Función para cargar detalles de los ejercicios (GIF y descripción)
+function loadExerciseDetails() {
+    fetch('db/getExerciseDetails.php') // Nuevo endpoint para obtener detalles
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(exercise => {
+                exerciseDetails[exercise.name] = {
+                    gif: exercise.gif,
+                    description: exercise.description
+                };
+            });
+        })
+        .catch(error => console.error('Error al cargar detalles de los ejercicios:', error));
+}
 
-    // Función para el manejo de la búsqueda
+// Cargar los datos cuando la página se carga
+document.addEventListener('DOMContentLoaded', () => {
+    loadMuscles();
+    loadExerciseDetails(); // Carga los detalles de los ejercicios
+
+    // Manejo del buscador
     const input = document.getElementById("fname");
     if (input) {
-        input.addEventListener("keyup", (event) => {
-            showHint(event.target.value); // Llama a la función de sugerencias
-        });
-
+        input.addEventListener("keyup", (event) => showHint(event.target.value));
         input.addEventListener("change", () => {
             const selectedMuscle = input.value;
             if (Object.keys(exercisesByMuscle).includes(selectedMuscle)) {
-                showExercises(selectedMuscle); // Muestra los ejercicios si se selecciona un músculo válido
+                showExercises(selectedMuscle);
             }
         });
-
         input.addEventListener("keypress", (event) => {
             if (event.key === "Enter") {
                 const selectedMuscle = input.value;
                 if (Object.keys(exercisesByMuscle).includes(selectedMuscle)) {
-                    showExercises(selectedMuscle); // Muestra los ejercicios si se presiona Enter
+                    showExercises(selectedMuscle);
                 }
             }
         });
     }
 
-    // Manejo de los clics sobre las rutas SVG de músculos
-    const musclePaths = document.querySelectorAll('path[data-muscle]');
-    musclePaths.forEach(path => {
+    // Manejo de clics en el SVG de músculos
+    document.querySelectorAll('path[data-muscle]').forEach(path => {
         path.addEventListener('click', () => {
             const muscle = path.getAttribute('data-muscle');
-            showExercises(muscle); // Muestra los ejercicios del músculo al hacer clic en la ruta
+            showExercises(muscle);
         });
     });
+
+    // Evento para cerrar el modal
+    document.querySelector(".close").addEventListener("click", closeModal);
 });
 
-// Función para mostrar las sugerencias de músculos
+// Función para mostrar sugerencias en el input
 function showHint(str) {
     const datalist = document.getElementById("muscle-list");
     datalist.innerHTML = "";
@@ -72,7 +77,7 @@ function showHint(str) {
         if (muscle.toLowerCase().includes(query)) {
             const option = document.createElement("option");
             option.value = muscle;
-            datalist.appendChild(option); // Agrega sugerencias de músculos a la lista
+            datalist.appendChild(option);
         }
     });
 }
@@ -91,7 +96,30 @@ function showExercises(muscle) {
     exerciseList.forEach(exercise => {
         const listItem = document.createElement('li');
         listItem.textContent = exercise;
-        list.appendChild(listItem); // Agrega cada ejercicio a la lista
+        listItem.addEventListener("click", () => openExerciseModal(exercise)); // Abre modal al hacer clic
+        list.appendChild(listItem);
     });
     container.appendChild(list);
+}
+
+// Función para abrir el modal con detalles del ejercicio
+function openExerciseModal(exercise) {
+    const modal = document.getElementById("exercise-modal");
+    const modalTitle = document.getElementById("exercise-title");
+    const modalGif = document.getElementById("exercise-gif");
+    const modalDesc = document.getElementById("exercise-description");
+
+    if (exerciseDetails[exercise]) {
+        modalTitle.textContent = exercise;
+        modalGif.src = exerciseDetails[exercise].gif;
+        modalDesc.textContent = exerciseDetails[exercise].description;
+        modal.style.display = "block";
+    } else {
+        console.error("No hay información disponible para este ejercicio.");
+    }
+}
+
+// Función para cerrar el modal
+function closeModal() {
+    document.getElementById("exercise-modal").style.display = "none";
 }

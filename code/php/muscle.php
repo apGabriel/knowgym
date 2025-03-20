@@ -396,6 +396,16 @@
 
         </div>
     </div>
+
+    <div id="exercise-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="exercise-title"></h2>
+            <img id="exercise-gif" src="" alt="Exercise GIF">
+            <p id="exercise-description"></p>
+        </div>
+    </div>
+    
     <?php include 'common/footer.php'; ?>
 
     <script src="../js/muscle.js"></script>
