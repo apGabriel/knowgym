@@ -155,6 +155,9 @@ div.muscle-container {
                 /* Estilos para la lista de ejercicios */
                 list-style-type: none;
                 padding: 0;
+                & > li {
+                    cursor: pointer;
+                }
             }
         }
     }

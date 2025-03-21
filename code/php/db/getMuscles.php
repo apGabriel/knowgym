@@ -1,38 +1,38 @@
 <?php
-// Conectar con la base de datos
+// db.php - Conexión a la base de datos
 include('db.php');
 
 header('Content-Type: application/json');
 
-// Consulta para obtener los músculos, sus ejercicios y los detalles de cada ejercicio
-$sql = "SELECT m.muscle_name, m.exercises, e.name AS exercise_name, e.gif, e.description 
+// Consulta para obtener los músculos y sus ejercicios con detalles
+$sql = "SELECT m.id AS muscle_id, m.muscle_name, e.id AS exercise_id, e.name AS exercise_name, e.gif, e.description
         FROM muscles m
-        LEFT JOIN exercises e ON JSON_CONTAINS(m.exercises, CONCAT('\"', e.name, '\"'))";
+        LEFT JOIN exercises e ON m.id = e.muscle_id
+        ORDER BY m.muscle_name";
 
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
 
-$muscleData = [];
-
+$muscles = [];
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    $muscleName = $row['muscle_name'];
-    
-    if (!isset($muscleData[$muscleName])) {
-        $muscleData[$muscleName] = [
-            "muscle_name" => $muscleName,
-            "exercises" => [],
+    $muscle_name = $row['muscle_name'];
+
+    if (!isset($muscles[$muscle_name])) {
+        $muscles[$muscle_name] = [
+            'muscle_name' => $muscle_name,
+            'exercises' => []
         ];
     }
+    
 
-    if ($row['exercise_name']) {
-        $muscleData[$muscleName]["exercises"][] = [
-            "name" => $row['exercise_name'],
-            "gif" => $row['gif'],
-            "description" => $row['description']
+    if ($row['exercise_id']) {
+        $muscles[$muscle_name]['exercises'][] = [
+            'name' => $row['exercise_name'],
+            'gif' => $row['gif'],
+            'description' => $row['description']
         ];
     }
 }
-
-// Convertir el array asociativo en un índice secuencial para JSON
-echo json_encode(array_values($muscleData));
+// Devolver los resultados como JSON
+echo json_encode(array_values($muscles));
 ?>

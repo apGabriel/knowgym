@@ -1,38 +1,21 @@
 let exercisesByMuscle = {}; // Objeto que contendrá los ejercicios dinámicamente
-let exerciseDetails = {}; // Objeto para almacenar detalles de los ejercicios (GIF y descripción)
 
 // Función para cargar los datos de los músculos desde la base de datos
 function loadMuscles() {
     fetch('db/getMuscles.php')
-        .then(response => response.ok ? response : fetch('../php/db/getMuscles.php'))
         .then(response => response.json())
         .then(data => {
+           
             data.forEach(muscle => {
-                exercisesByMuscle[muscle.muscle_name] = JSON.parse(muscle.exercises);
+                exercisesByMuscle[muscle.muscle_name] = muscle.exercises;
             });
         })
         .catch(error => console.error('Error al cargar los músculos:', error));
 }
 
-// Función para cargar detalles de los ejercicios (GIF y descripción)
-function loadExerciseDetails() {
-    fetch('db/getExerciseDetails.php') // Nuevo endpoint para obtener detalles
-        .then(response => response.json())
-        .then(data => {
-            data.forEach(exercise => {
-                exerciseDetails[exercise.name] = {
-                    gif: exercise.gif,
-                    description: exercise.description
-                };
-            });
-        })
-        .catch(error => console.error('Error al cargar detalles de los ejercicios:', error));
-}
-
 // Cargar los datos cuando la página se carga
 document.addEventListener('DOMContentLoaded', () => {
     loadMuscles();
-    loadExerciseDetails(); // Carga los detalles de los ejercicios
 
     // Manejo del buscador
     const input = document.getElementById("fname");
@@ -40,14 +23,14 @@ document.addEventListener('DOMContentLoaded', () => {
         input.addEventListener("keyup", (event) => showHint(event.target.value));
         input.addEventListener("change", () => {
             const selectedMuscle = input.value;
-            if (Object.keys(exercisesByMuscle).includes(selectedMuscle)) {
+            if (exercisesByMuscle[selectedMuscle]) {
                 showExercises(selectedMuscle);
             }
         });
         input.addEventListener("keypress", (event) => {
             if (event.key === "Enter") {
                 const selectedMuscle = input.value;
-                if (Object.keys(exercisesByMuscle).includes(selectedMuscle)) {
+                if (exercisesByMuscle[selectedMuscle]) {
                     showExercises(selectedMuscle);
                 }
             }
@@ -95,7 +78,7 @@ function showExercises(muscle) {
     const list = document.createElement('ul');
     exerciseList.forEach(exercise => {
         const listItem = document.createElement('li');
-        listItem.textContent = exercise;
+        listItem.textContent = exercise.name;
         listItem.addEventListener("click", () => openExerciseModal(exercise)); // Abre modal al hacer clic
         list.appendChild(listItem);
     });
@@ -109,14 +92,10 @@ function openExerciseModal(exercise) {
     const modalGif = document.getElementById("exercise-gif");
     const modalDesc = document.getElementById("exercise-description");
 
-    if (exerciseDetails[exercise]) {
-        modalTitle.textContent = exercise;
-        modalGif.src = exerciseDetails[exercise].gif;
-        modalDesc.textContent = exerciseDetails[exercise].description;
-        modal.style.display = "block";
-    } else {
-        console.error("No hay información disponible para este ejercicio.");
-    }
+    modalTitle.textContent = exercise.name;
+    modalGif.src = exercise.gif;
+    modalDesc.textContent = exercise.description;
+    modal.style.display = "block";
 }
 
 // Función para cerrar el modal
