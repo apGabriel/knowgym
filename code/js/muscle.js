@@ -42,11 +42,13 @@ document.addEventListener('DOMContentLoaded', () => {
         path.addEventListener('click', () => {
             const muscle = path.getAttribute('data-muscle');
             showExercises(muscle);
+            closeModal();
         });
     });
 
-    // Evento para cerrar el modal
+    // Evento para cerrar el modal al hacer clic en el botón de cerrar
     document.querySelector(".close").addEventListener("click", closeModal);
+
 });
 
 // Función para mostrar sugerencias en el input

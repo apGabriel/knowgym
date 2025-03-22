@@ -28,7 +28,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     if ($row['exercise_id']) {
         $muscles[$muscle_name]['exercises'][] = [
             'name' => $row['exercise_name'],
-            'gif' => $row['gif'],
+            'gif' => "../../img/exercises-gif/" . $row['gif'],
             'description' => $row['description']
         ];
     }
