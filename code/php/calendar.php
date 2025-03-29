@@ -47,7 +47,14 @@
             </div>
         </div>
     </div>
+
+    <div class="buttons">
+        <button class="rutine">Create Rutine</button>
+        <button class="rutine-manager">Rutine Manager</button>
+    </div>
+
     <?php include 'common/footer.php'; ?>
     <script src="../js/script-calendar.js"></script>
+    <script src="../js/script-routines.js"></script>
 </body>
 </html>
