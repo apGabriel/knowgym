@@ -4,6 +4,7 @@ body {
 
 div.calendar {
     margin: 125px calc(100% - 70%); /* Centra el calendario con márgenes calculados */
+    margin-bottom: 50px;
     background: linear-gradient(to right, #101010, #3E3E3E); /* Fondo con un degradado */
     border-radius: 10px; /* Bordes redondeados */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave para darle profundidad */
@@ -206,6 +207,23 @@ div.modal {
     }
 }
 
+div.buttons {
+    display: flex; /* Usa flexbox */
+    justify-content: space-evenly;
+    margin-bottom: 15px;
+
+    & > button {
+        background: linear-gradient(to right, #956534, #d2bc8a, #956534);
+        padding: 10px;
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    & > button:hover{
+        transform: scale(1.1); /* Aumenta el tamaño ligeramente */
+    }
+}
 
 .event-indicator {
     display: inline-block; /* Hace que el indicador sea un bloque en línea */
