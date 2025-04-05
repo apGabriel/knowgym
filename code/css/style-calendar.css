@@ -303,12 +303,6 @@ div.modal {
     flex: 1;
 }
 
-/* Responsive para móvil */
-@media (max-width: 768px) {
-    .exercise-grid {
-        grid-template-columns: 1fr; /* Una sola columna en móvil */
-    }
-}
 
 div.buttons {
     display: flex; /* Usa flexbox */
@@ -399,5 +393,11 @@ div.buttons {
     /* Ajuste para el contenido del modal */
     .modal-content {
         padding: 8px; /* Espaciado dentro del contenido del modal */
+    }
+
+    .exercise-grid {
+        grid-template-columns: 1fr; /* Una sola columna en móvil */
+        max-height: 200px; /* Ajusta según lo que necesites */
+        overflow-y: auto;
     }
 }
