@@ -25,15 +25,11 @@ function submitForm(event, formType) {
             alert(`Success: ${data.message}`);
 
             if (formType === 'register') {
-                // Si es el formulario de registro, redirige a login
                 window.location.href = 'forms.php?form=login';
             }
 
             if (formType === 'login') {
-                // Guardar sesión en localStorage para manejar el estado en el frontend
                 localStorage.setItem('user_logged_in', 'true');
-
-                // Redirigir al index.php
                 window.location.href = '../php/index.php';
             }
         } else {
@@ -48,7 +44,7 @@ function submitForm(event, formType) {
 
 // Maneja el parámetro "form" en la URL
 const urlParams = new URLSearchParams(window.location.search);
-const formType = urlParams.get('form') || 'login'; // Por defecto, muestra login
+const formType = urlParams.get('form') || 'login';
 showForm(formType);
 
 // Asigna el manejador de eventos a los formularios
@@ -68,9 +64,26 @@ document.addEventListener("DOMContentLoaded", function () {
     if (calendarButton && warningMessage) {
         calendarButton.addEventListener("click", function (event) {
             if (!localStorage.getItem('user_logged_in')) {
-                event.preventDefault(); // Evita la redirección
-                warningMessage.classList.remove("hidden"); // Muestra el mensaje de advertencia
+                event.preventDefault();
+                warningMessage.classList.remove("hidden");
             }
         });
     }
+
+    // --- MOSTRAR/OCULTAR CONTRASEÑA ---
+    const toggleIcons = document.querySelectorAll('.password-toggle');
+    toggleIcons.forEach(icon => {
+        icon.addEventListener('click', () => {
+            const input = icon.previousElementSibling;
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+    });
 });

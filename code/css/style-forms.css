@@ -15,34 +15,25 @@ section.form-container {
     overflow: hidden;
 
     & > div.form-box {
-        /* Posiciona el formulario en el centro absoluto */
+        /* Posición y entrada animada */
         position: absolute;
         top: 50%;
         left: 50%;
-        
-        /* Inicialmente, el formulario está desplazado fuera de la pantalla hacia la derecha */
         transform: translate(-50%, -50%) translateX(100%);
-        
-        /* Aplica un fondo con un degradado oscuro */
-        background: linear-gradient(to right, #101010, #3E3E3E);
-
-        /* Añade relleno para espaciar el contenido */
-        padding: 20px;
-
-        /* Bordes redondeados para un diseño más moderno */
-        border-radius: 10px;
-
-        /* Aplica una sombra sutil al formulario */
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
-        /* Inicialmente, el formulario es invisible */
         opacity: 0;
-
-        /* Define un ancho fijo */
+    
+        /* Estilo visual */
+        background: linear-gradient(to right, #101010, #3E3E3E);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         width: 300px;
-
-        /* Agrega una transición para animar la entrada del formulario */
+    
+        /* Animaciones */
         transition: transform 0.5s ease, opacity 0.5s ease;
+    
+        /* Importante: no interactuable */
+        pointer-events: none;
 
         & > h2 {
             /* Centra el título */
@@ -106,5 +97,34 @@ section.form-container {
     & > div.form-box.active {
         transform: translate(-50%, -50%) translateX(0);
         opacity: 1;
+
+        /* Ahora sí se puede interactuar */
+        pointer-events: auto;
     }
+}
+
+.password-container {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.password-container input[type="password"],
+.password-container input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding-right: 40px; /* espacio para el icono */
+    box-sizing: border-box;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #888;
+    font-size: 1.2rem;
 }

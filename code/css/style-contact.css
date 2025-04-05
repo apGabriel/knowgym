@@ -12,7 +12,7 @@ main {
 }
 
 section.form-container {
-    margin: 50px auto;
+    margin: 125px calc(100% - 70%);
     width: 90%;
     max-width: 400px;
     background: linear-gradient(to right, #101010, #3E3E3E);

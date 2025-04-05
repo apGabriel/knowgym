@@ -27,11 +27,11 @@
     </section>
 
     <section class="why-section">
-        <h2>¿Por qué hemos decidido crear esta página?</h2>
-        <p>Sabemos que, para muchas personas, mantener una rutina constante y variada en el gimnasio puede ser un desafío. Falta de organización, incertidumbre sobre qué ejercicios realizar o simplemente la falta de herramientas prácticas para planificar sus entrenamientos, son problemas comunes que queríamos resolver.</p>
-        <p>Con nuestra plataforma, buscamos empoderar a cada usuario para que tome el control de su propio progreso, ofreciendo una herramienta intuitiva y funcional que se adapte tanto a principiantes como a deportistas avanzados.</p>
-        <p>Nuestra web no es solo una herramienta, es tu compañera en el camino hacia tus metas deportivas. Creemos en el poder de la planificación como clave para el éxito, y estamos comprometidos a ofrecerte todo lo necesario para que aproveches al máximo cada entrenamiento.</p>
-        <p>Te invitamos a descubrir cómo nuestra plataforma puede marcar la diferencia en tu rutina diaria y ayudarte a llevar tu rendimiento al siguiente nivel.</p>
+        <h2>Why did we decide to create this website?</h2>
+        <p>Whe know that, for many people maintaining a consistent and varied routine at the gym can be a challenge. Lack of organization, uncertainty about which exercises to perform, or simply the lack of practical tools to plan their workouts are common problems we wanted to solve.</p>
+        <p>With our platform, we aim to empower each user to take control of their own progress by offering an intuitive and functional tool that suits both beginners and advanced athletes.</p>
+        <p>Our website is not just a tool, it's your companion on the path to your fitness goals. We believe in the power of planning as the key to success, and we are committed to providing you with everything you need to make the most out of every workout.</p>
+        <p>We invite you to discover how our platform can make a difference in your daily routine and help you take your performance to the next level.</p>
     </section>
 
     <?php include 'common/footer.php'; ?>
