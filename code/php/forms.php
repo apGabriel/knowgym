@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="../css/style-forms.css">
     <link rel="icon" href="../../img/logo-wings.ico" type="image/x-icon">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
+    
+    <!-- Font Awesome para íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 
 <body>
@@ -20,7 +22,12 @@
                 <h2>Login</h2>
                 <form action="db/login.php" method="POST">
                     <input type="email" name="email" placeholder="Email" required>
-                    <input type="password" name="password" placeholder="Password" required>
+                    
+                    <div class="password-container">
+                        <input type="password" name="password" placeholder="Password" required>
+                        <i class="fas fa-eye password-toggle"></i>
+                    </div>
+
                     <button type="submit" name="action" value="login">Login</button>
                 </form>
                 <p>Don't have an account?
@@ -32,8 +39,16 @@
                 <form action="db/register.php" method="POST">
                     <input type="text" name="username" placeholder="Username" required>
                     <input type="email" name="email" placeholder="Email" required>
-                    <input type="password" name="password" placeholder="Password" required>
-                    <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+
+                    <div class="password-container">
+                        <input type="password" name="password" placeholder="Password" required>
+                        <i class="fas fa-eye password-toggle"></i>
+                    </div>
+
+                    <div class="password-container">
+                        <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+                        <i class="fas fa-eye password-toggle"></i>
+                    </div>
 
                     <!-- reCAPTCHA -->
                     <div class="g-recaptcha" data-sitekey="6Lc_yt4qAAAAABhGg_uDtqzDHzPKw6QQ7uPpNVnL"></div>
@@ -48,6 +63,7 @@
     </main>
     <?php include 'common/footer.php'; ?>
     <?php include 'db/db.php'; ?>
+
     <script src="../js/forms.js"></script>
 </body>
 

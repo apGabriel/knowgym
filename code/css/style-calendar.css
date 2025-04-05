@@ -108,7 +108,7 @@ div.modal {
     border-radius: 10px; /* Bordes redondeados */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5); /* Sombra para el modal */
     width: 90%; /* Ancho del 90% del contenedor */
-    max-width: 400px; /* Ancho máximo */
+    max-width: 500px; /* Ancho máximo */
     padding: 20px; /* Espaciado interno */
     color: #fff; /* Texto blanco */
     
@@ -124,6 +124,10 @@ div.modal {
             font-weight: bold; /* Texto en negrita */
             margin: 0; /* Elimina márgenes */
             text-align: center; /* Centrado */
+        }
+
+        & > h3{
+            margin-bottom: 0;
         }
 
         & > p#selected-date {
@@ -142,6 +146,50 @@ div.modal {
             font-size: 1rem; /* Tamaño de la fuente */
             background-color: #fff; /* Fondo blanco */
             color: #2a2a2a; /* Texto oscuro */
+        }
+
+        & > input{
+            padding: 8px;
+            border: 1px solid #666;
+            border-radius: 5px;
+            font-size: 1rem;
+            background-color: #fff;
+        }
+
+        & > select{
+            padding: 8px;
+            border: 1px solid #666;
+            border-radius: 5px;
+            font-size: 1rem;
+            background-color: #fff;
+        }
+
+        & > div#selected-exercises-container{
+            & > div.muscle-group {
+                & > ol{
+                    list-style: none; /* Elimina la numeración */
+                    padding: 0;
+                    & > li{
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between; /* Alinea el texto a la izquierda y el botón a la derecha */
+                        padding: 5px 10px;
+                        border-bottom: 1px solid #ddd; /* Línea separadora opcional */
+                        & > button{
+                            background-color: red;
+                            color: white;
+                            border: none;
+                            padding: 5px 10px;
+                            cursor: pointer;
+                            border-radius: 5px;
+                            margin-left: auto;
+                        }
+                        & >  button:hover {
+                            background-color: darkred;
+                        }
+                    }   
+                }
+            }
         }
 
         & > div.time-inputs {
@@ -192,18 +240,73 @@ div.modal {
             & > button#delete-event:hover {
                 background-color: #c82333; /* Color rojo más oscuro al hacer hover */
             }
+
+            & > button#save-routine{
+                background-color: #28a745; /* Color verde */
+                color: #fff; /* Texto blanco */
+            }
+    
+            & > button#save-routine:hover{
+                background-color: #218838; /* Color verde */
+            }
         }
 
-        & > span.close {
+        & > span.close, 
+        & > span.close-routine, 
+        & > span.close-exercise {
             position: absolute;
             top: 10px;
-            right: 10px; /* Posiciona el ícono de cierre en la esquina superior derecha */
+            right: 10px;
             font-size: 1.5rem;
+            cursor: pointer; /* Aplica el cursor en la misma regla */
         }
 
-        & > span.close:hover {
-            cursor: pointer; /* Cambia el cursor a puntero al pasar sobre el ícono */
-        }
+    }
+}
+
+.exercise-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas por defecto */
+    gap: 10px;
+    padding: 10px;
+    max-height: 400px; /* Ajusta según lo que necesites */
+    overflow-y: auto;
+}
+
+
+.exercise-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.exercise-item.selected {
+    border: 2px solid #956534;
+    background-color: #a8804e;
+}
+
+.exercise-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+.exercise-item p {
+    margin: 0;
+    font-weight: 500;
+    flex: 1;
+}
+
+/* Responsive para móvil */
+@media (max-width: 768px) {
+    .exercise-grid {
+        grid-template-columns: 1fr; /* Una sola columna en móvil */
     }
 }
 

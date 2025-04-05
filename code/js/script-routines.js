@@ -1,7 +1,8 @@
 document.querySelector(".rutine").addEventListener("click", () => openRoutineModal(false));
 document.querySelector(".rutine-manager").addEventListener("click", () => openRoutineModal(true));
 
-let selectedExercises = {}; // Objeto para almacenar ejercicios por grupo muscular
+let selectedExercises = {}; // Almacena ejercicios seleccionados por grupo muscular
+let tempSelectedExercises = {}; // Almacena temporalmente los ejercicios seleccionados
 
 function openRoutineModal(isManager) {
     let modal = document.getElementById("routine-modal");
@@ -59,7 +60,7 @@ function openRoutineModal(isManager) {
         }
     });
 
-    updateSelectedExercises(); 
+    updateSelectedExercises();
 }
 
 function openExerciseModal(muscleName) {
@@ -80,6 +81,8 @@ function openExerciseModal(muscleName) {
                 return;
             }
 
+            tempSelectedExercises[muscleName] = [...(selectedExercises[muscleName] || [])];
+
             let exerciseHtml = `
                 <div class='modal-content'>
                     <span class='close-exercise'>&times;</span>
@@ -87,14 +90,12 @@ function openExerciseModal(muscleName) {
                     <div class='exercise-grid'>
             `;
 
-            muscleData.exercises.forEach((exercise, index) => {
+            muscleData.exercises.forEach(exercise => {
+                const isSelected = tempSelectedExercises[muscleName]?.includes(exercise.name) ? "selected" : "";
                 exerciseHtml += `
-                    <div class='exercise-item'>
-                        <input type='checkbox' id='exercise-${index}' value='${exercise.name}'>
-                        <label for='exercise-${index}'>
-                            <img src='${exercise.gif}' alt='${exercise.name}' width='50'>
-                            ${exercise.name}
-                        </label>
+                    <div class='exercise-item ${isSelected}' data-exercise='${exercise.name}' data-muscle='${muscleName}'>
+                        <img src='${exercise.gif}' alt='${exercise.name}' width='50'>
+                        <p>${exercise.name}</p>
                     </div>
                 `;
             });
@@ -112,15 +113,28 @@ function openExerciseModal(muscleName) {
                 modal.style.display = "none";
             });
 
-            document.getElementById("select-exercises").addEventListener("click", () => {
-                document.querySelectorAll("#exercise-modal input[type='checkbox']:checked").forEach((checkbox) => {
-                    if (!selectedExercises[muscleName]) {
-                        selectedExercises[muscleName] = [];
-                    }
-                    selectedExercises[muscleName].push(checkbox.value);
-                });
+            document.querySelectorAll(".exercise-item").forEach(item => {
+                item.addEventListener("click", function () {
+                    const muscle = this.getAttribute("data-muscle");
+                    const exercise = this.getAttribute("data-exercise");
 
-                updateSelectedExercises(); 
+                    if (!tempSelectedExercises[muscle]) {
+                        tempSelectedExercises[muscle] = [];
+                    }
+
+                    if (tempSelectedExercises[muscle].includes(exercise)) {
+                        tempSelectedExercises[muscle] = tempSelectedExercises[muscle].filter(e => e !== exercise);
+                        this.classList.remove("selected");
+                    } else {
+                        tempSelectedExercises[muscle].push(exercise);
+                        this.classList.add("selected");
+                    }
+                });
+            });
+
+            document.getElementById("select-exercises").addEventListener("click", () => {
+                selectedExercises[muscleName] = [...(tempSelectedExercises[muscleName] || [])];
+                updateSelectedExercises();
                 modal.style.display = "none";
             });
         })
@@ -158,7 +172,7 @@ function updateSelectedExercises() {
                     if (selectedExercises[muscleGroup].length === 0) {
                         delete selectedExercises[muscleGroup]; 
                     }
-                    updateSelectedExercises(); 
+                    updateSelectedExercises();
                 });
 
                 listItem.appendChild(removeButton);
