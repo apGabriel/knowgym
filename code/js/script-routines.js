@@ -26,7 +26,7 @@ function openRoutineModal(isManager) {
             </select>
 
             <h3>Selected Exercises:</h3>
-            <div id="selected-exercises-container"></div> 
+            <div id="selected-exercises-container"></div>
 
             <div class="modal-buttons">
                 <button id="save-routine">Save</button>
@@ -153,7 +153,7 @@ function updateSelectedExercises() {
             muscleSection.classList.add("muscle-group");
 
             const title = document.createElement("h4");
-            title.textContent = `${muscleGroup}:`;
+            title.textContent = `${muscleGroup}▼`;
             muscleSection.appendChild(title);
 
             const exerciseList = document.createElement("ol");
@@ -181,6 +181,18 @@ function updateSelectedExercises() {
 
             muscleSection.appendChild(exerciseList);
             container.appendChild(muscleSection);
+
+            // Hacer que las listas estén comprimidas por defecto
+            title.addEventListener("click", () => {
+                const exerciseList = muscleSection.querySelector("ol");
+                if (exerciseList.style.maxHeight === '0px' || exerciseList.style.maxHeight === '') {
+                    exerciseList.style.maxHeight = `${exerciseList.scrollHeight}px`; // Expande la lista a su altura total
+                    title.textContent = `${muscleGroup} ▲`; // Cambiar el ícono a ▲ cuando se expande
+                } else {
+                    exerciseList.style.maxHeight = '0'; // Contrae la lista
+                    title.textContent = `${muscleGroup} ▼`; // Cambiar el ícono a ▼ cuando se contrae
+                }
+            });
         }
     });
 }

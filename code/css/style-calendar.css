@@ -166,9 +166,15 @@ div.modal {
 
         & > div#selected-exercises-container{
             & > div.muscle-group {
+                & > h4 {
+                    cursor: pointer;
+                }
                 & > ol{
                     list-style: none; /* Elimina la numeración */
                     padding: 0;
+                    max-height: 0; /* Inicialmente oculto */
+                    overflow: hidden; /* Ocultar el contenido fuera del área visible */
+                    transition: max-height 0.3s ease-out;
                     & > li{
                         display: flex;
                         align-items: center;
@@ -189,7 +195,9 @@ div.modal {
                         }
                     }   
                 }
+
             }
+            
         }
 
         & > div.time-inputs {
