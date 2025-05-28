@@ -49,8 +49,8 @@ function openUnifiedRoutineModal(isManager) {
 }
 
 function renderCreateRoutineForm() {
-    isEditMode = false; // Modo creación
-    selectedExercises = {}; // Limpiar el objeto global que guarda los ejercicios
+    isEditMode = false;
+    selectedExercises = {};
 
     const container = document.getElementById("routine-form-section");
     document.getElementById("routine-modal-title").textContent = "Create Routine";
@@ -131,7 +131,7 @@ function renderCreateRoutineForm() {
             if (response.success) {
                 alert("Routine saved successfully!");
                 document.getElementById("routine-modal").style.display = "none";
-                selectedExercises = {}; // Reset after saving también
+                selectedExercises = {};
                 loadUserRoutines();
             } else {
                 alert("Error saving routine: " + response.message);
@@ -143,6 +143,7 @@ function renderCreateRoutineForm() {
         });
     });
 }
+
 
 function renderManageRoutines() {
     isEditMode = false;
@@ -220,7 +221,7 @@ function renderManageRoutines() {
                                         exercise_name: exercise.exercise_name,
                                         sets: exercise.sets ?? 3,
                                         reps: exercise.reps ?? 12,
-                                        duration: exercise.duration ?? null
+                                        duration: exercise.duration ?? 60
                                     });
                                 });
                             });
@@ -406,8 +407,6 @@ function openExerciseModal(muscleName) {
                 return;
             }
 
-            // Copiar selección actual a temporal
-            // Si es edición, aquí tenemos objetos; si no, strings
             tempSelectedExercises[muscleName] = [...(selectedExercises[muscleName] || [])];
 
             let exerciseHtml = `
@@ -477,8 +476,8 @@ function openExerciseModal(muscleName) {
                                         exercise_id: exerciseId,
                                         exercise_name: exerciseName,
                                         sets: 3,
-                                        reps: null,
-                                        duration: null
+                                        reps: 12,
+                                        duration: 60
                                     });
                                     this.classList.add("selected");
                                 })
@@ -489,8 +488,8 @@ function openExerciseModal(muscleName) {
                                         exercise_id: null,
                                         exercise_name: exerciseName,
                                         sets: 3,
-                                        reps: null,
-                                        duration: null
+                                        reps: 12,
+                                        duration: 60
                                     });
                                     this.classList.add("selected");
                                 });
@@ -720,12 +719,12 @@ function updateSelectedExercisesEdit() {
 
             repsInput.addEventListener("input", () => {
                 const val = parseInt(repsInput.value);
-                selectedExercises[muscle][index].reps = val > 0 ? val : null;
+                selectedExercises[muscle][index].reps = val > 0 ? val : 12;
             });
 
             durationInput.addEventListener("input", () => {
                 const val = parseInt(durationInput.value);
-                selectedExercises[muscle][index].duration = val > 0 ? val : null;
+                selectedExercises[muscle][index].duration = val > 0 ? val : 60;
             });
 
             setsInput.addEventListener("input", () => {

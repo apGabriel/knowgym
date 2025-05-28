@@ -71,6 +71,9 @@ header {
 
             &>a:hover {
                 color: #d2bc8a; /* Color dorado al pasar el cursor */
+                & > svg{
+                    fill: #d2bc8a;
+                }
             }
         }
     }
@@ -280,7 +283,7 @@ footer {
             top: 50px; /* Ubica el menú 50px debajo del header */
             right: 10px; /* Alinea el menú hacia la derecha */
             background: rgba(16, 16, 16, 0.9); /* Fondo oscuro semi-transparente */
-            width: 180px; /* Establece el ancho del menú */
+            /*width: 180px;  Establece el ancho del menú */
             border-radius: 10px; /* Bordes redondeados */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombra para darle profundidad */
             padding: 10px 0; /* Espaciado interno */

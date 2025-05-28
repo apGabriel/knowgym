@@ -17,11 +17,34 @@
             <li><a href="forms.php?form=login">Login</a></li>
             <li><a href="forms.php?form=register">Register</a></li>
         <?php else: ?>
-            <!-- Si el usuario está logeado, muestra "Darse de baja" -->
-            <li><a href="index.php" onclick="logoutUser()">Log out</a></li>
-            <?php endif; ?>
-        <li><a href="contact.php">Contact</a></li>
+            <!-- Si el usuario está logeado, muestra ícono de usuario -->
+            <li>
+                <a href="editUser.php" title="Edit profile">
+                    <svg width="25" height="25" viewBox="0 0 25 25" fill="white" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle;">
+                        <path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5z" />
+                        <path d="M12 14c-4.42 0-8 1.79-8 4v2h16v-2c0-2.21-3.58-4-8-4z" />
+                    </svg>
+                </a>
+            </li>
+            <li>
+                <a href="index.php" onclick="logoutUser()" title="Log out">
+                    <svg width="25" height="25" viewBox="0 0 25 25" fill="white" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle;">
+                        <path d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L13.67 11H3v2h10.67l-3.58 3.59z" />
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />
+                    </svg>
+                </a>
+            </li>
+        <?php endif; ?>
+        <li>
+            <a href="contact.php" title="Contact">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" viewBox="0 0 25 25" style="vertical-align: middle;">
+                    <path d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM6 9h12v2H6V9zm8 4H6v-2h8v2zm4-6H6V5h12v2z" />
+                </svg>
+            </a>
+        </li>
     </ul>
+
+
     <script src="../js/menu.js"></script>
 
 </header>
