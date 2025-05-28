@@ -1,0 +1,480 @@
+body {
+    color: #fff;
+}
+
+div.calendar {
+    margin: 125px calc(100% - 70%); /* Centra el calendario con márgenes calculados */
+    margin-bottom: 50px;
+    background: linear-gradient(to right, #101010, #3E3E3E); /* Fondo con un degradado */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave para darle profundidad */
+    overflow: hidden; /* Oculta cualquier contenido fuera del contenedor */
+    
+    & > .calendar-header {
+        display: flex; /* Usamos Flexbox para la disposición */
+        justify-content: space-between; /* Espaciado entre los elementos */
+        align-items: center; /* Alinea los elementos al centro */
+        padding: 10px;
+        background: linear-gradient(to right, #956534, #d2bc8a, #956534); /* Fondo con degradado */
+        color: #fff; /* Color blanco para el texto */
+    
+        & > button.nav-btn {
+            flex: 0 0 10%; /* El botón ocupa el 10% del contenedor */
+            display: flex;
+            justify-content: center; /* Centra el contenido dentro del botón */
+            align-items: center; /* Centra el contenido dentro del botón */
+            background-color: transparent; /* Fondo transparente */
+            color: white; /* Texto blanco */
+            border: none; /* Sin borde */
+            padding: 0; /* Sin relleno por defecto */
+            font-size: 1.2rem; /* Tamaño de fuente */
+            font-weight: bold; /* Texto en negrita */
+            cursor: pointer; /* Cambia el cursor al puntero al pasar sobre el botón */
+            transition: background-color 0.3s; /* Transición suave en el cambio de color de fondo */
+        }
+    
+        & > button.nav-btn:hover {
+            transform: scale(1.1); /* Aumenta el tamaño del botón al pasar el cursor */
+        }
+    
+        & > span#calendar-header {
+            flex: 0 0 60%; /* El título ocupa el 60% del contenedor */
+            text-align: center; /* Centra el texto */
+            font-size: 1.5rem; /* Tamaño de fuente */
+            font-weight: bold; /* Texto en negrita */
+        }
+    }
+
+    & > div.calendar-body {
+        display: grid; /* Usamos Grid para la disposición de los días */
+        grid-template-columns: repeat(7, 1fr); /* Crea 7 columnas (una por cada día de la semana) */
+        padding: 10px;
+        background-color: #101010; /* Fondo oscuro para el cuerpo del calendario */
+        
+        & > div.day, /* Estilos para los días de la semana */
+        & > div.date { /* Estilos para las fechas */
+            padding: 10px;
+            margin: 5px;
+            text-align: center;
+            border-radius: 5px; /* Bordes redondeados para las celdas */
+            font-size: 1rem;
+            transition: transform 0.3s, background-color 0.3s; /* Transición suave en hover */
+        }
+        
+        & > div.day {
+            font-weight: bold; /* Días de la semana en negrita */
+            color: #d2bc8a; /* Color dorado */
+            text-transform: uppercase; /* Convertir texto a mayúsculas */
+        }
+        
+        & > div.date.empty {
+            visibility: hidden; /* Oculta los días vacíos */
+            background-color: transparent; /* Fondo transparente */
+            pointer-events: none; /* Desactiva los eventos de clic */
+        }
+        
+        & > div.date {
+            background-color: #333; /* Fondo oscuro para las fechas */
+            cursor: pointer; /* Cursor de puntero al pasar sobre las fechas */
+            
+            &:hover {
+                transform: scale(1.1); /* Aumenta el tamaño al pasar el cursor */
+                background-color: #444; /* Fondo más claro al pasar el cursor */
+            }
+        }
+        
+        & > div.today {
+            background-color: #7d5228; /* Fondo color especial para el día de hoy */
+            color: #fff; /* Texto blanco */
+            font-weight: bold; /* Texto en negrita */
+            
+            &:hover {
+                transform: scale(1.1); /* Aumenta el tamaño al pasar el cursor */
+                background-color: #7d5228; /* Fondo sin cambio al pasar el cursor */
+            }
+        }
+    }
+}
+
+
+div.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    background: linear-gradient(to right, #101010, #3E3E3E);
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+    width: 90%;
+    max-width: 600px;
+    padding: 20px;
+    color: #fff;
+    & > div.modal-content {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        position: relative;
+        & > h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin: 0;
+        }
+        & > select#event-text{
+            padding: 8px;
+            border: 1px solid #666;
+            border-radius: 5px;
+            font-size: 1rem;
+            background-color: #fff;
+            color: #2a2a2a;
+        }
+        & > div.manage-event{
+            display: flex;
+            
+            & > div.routine-exercises{
+                width: 80%;
+                margin-left: 50px;
+                & > h4{
+                    margin-top: 0;
+                }
+            }
+            & > div.time-inputs {
+                    display: flex;
+                    flex-direction: column;
+                }
+        }
+    }
+    & > div.modal-buttons {
+        display: flex;
+        justify-content: space-between;
+        & > button {
+            padding: 10px 15px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+    }
+}
+
+/* Botones de modo */
+#routine-mode-switch {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+#routine-mode-switch .mode-btn {
+    background: #3E3E3E;
+    padding: 8px 15px;
+    border-radius: 8px;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#routine-mode-switch .mode-btn:hover {
+    transform: scale(1.05);
+}
+
+#routine-form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#user-routines-container {
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+#routine-form-section input,
+#routine-form-section select {
+    padding: 8px;
+    border: 1px solid #666;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #fff;
+    color: #2a2a2a;
+}
+.muscle-group{
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+#selected-exercises-container .muscle-group h4 {
+    cursor: pointer;
+    margin: 0;
+}
+
+#selected-exercises-container .muscle-group ol {
+    list-style: none;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+#selected-exercises-container .muscle-group ol li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+#selected-exercises-container .muscle-group ol li button,#delete-exercise {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#selected-exercises-container .muscle-group ol li button:hover,#delete-exercise:hover {
+    background-color: darkred;
+}
+
+#save-routine {
+    background-color: #28a745;
+    color: #fff;
+}
+
+#save-routine:hover {
+    background-color: #218838;
+}
+
+#delete-event {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+#delete-event:hover {
+    background-color: #c82333;
+}
+
+span.close, span.close-routine, span.close-exercise {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.exercise-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.exercise-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+    & > img {
+        width: 60px;
+        height: 60px;
+        object-fit: contain;
+        border-radius: 5px;
+    }
+    & > p {
+        margin: 0;
+        font-weight: 500;
+        flex: 1;
+    }
+}
+
+.exercise-item.selected {
+    border: 2px solid #956534;
+    background-color: #a8804e;
+}
+
+
+div.buttons {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 15px;
+    & > button {
+        background: linear-gradient(to right, #956534, #d2bc8a, #956534);
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    & > button:hover {
+        transform: scale(1.1);
+    }
+}
+
+/* Estilo general para las rutinas */
+#user-routines-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 2rem auto;
+    width: 100%;
+    max-width: 600px;
+}
+
+/* Estilo de cada bloque de rutina */
+.routine-block {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center; /* Alinea verticalmente el texto y los botones */
+    padding: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+/* Estilo del encabezado de cada rutina */
+.routine-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* Estilo del nombre de la rutina */
+.routine-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Grupo de botones de edición y eliminación */
+.routine-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+/* Estilo de los botones */
+button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Estilo del botón de editar */
+.edit-button {
+    background-color: #3E3E3E;
+    color: white;
+}
+
+.exercise-entry {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Estilo del botón de eliminar */
+.delete-button {
+    background-color: #f44336;
+    color: white;
+}
+
+.delete-button:hover {
+    background-color: #e53935;
+}
+
+.event-indicator {
+    display: inline-block; /* Hace que el indicador sea un bloque en línea */
+    width: 8px; /* Ancho de 8px */
+    height: 8px; /* Alto de 8px */
+    background-color: red; /* Color de fondo rojo */
+    border-radius: 50%; /* Hace que el indicador sea redondo */
+    position: absolute; /* Posiciona el indicador de forma absoluta dentro del contenedor */
+    top: 5px; /* Posición de 5px desde la parte superior */
+    right: 5px; /* Posición de 5px desde el lado derecho */
+}
+
+/* Estilo para pantallas con un ancho entre 441px y 1300px */
+@media screen and (min-width: 441px) and (max-width: 1300px) {
+    div.calendar {
+        margin: 125px 105px; /* Aplica márgenes de 125px en la parte superior e inferior, y 105px en los lados */
+    }
+}
+
+
+@media screen and (max-width: 440px) {
+    /* Ajusta el tamaño del calendario */
+    div.calendar {
+        max-width: -webkit-fill-available; /* Asegura que el calendario ocupe todo el ancho disponible */
+        width: 100%; /* Asegura que el calendario tenga un ancho del 100% */
+        margin: 100px auto; /* Centra el calendario en la pantalla con márgenes en la parte superior e inferior */
+        border-radius: 8px; /* Bordes redondeados */
+        font-size: 0.75rem; /* Reduce el tamaño de la fuente */
+        overflow: hidden; /* Oculta cualquier contenido que sobresalga */
+    }
+
+    /* Ajuste para el encabezado del calendario */
+    .calendar-header {
+        padding: 6px; /* Espaciado alrededor del encabezado */
+        font-size: 0.85rem; /* Reduce el tamaño de la fuente del encabezado */
+        text-align: center; /* Centra el texto del encabezado */
+    }
+
+    /* Ajuste para los botones de navegación */
+    .nav-btn {
+        font-size: 0.9rem; /* Reduce el tamaño de la fuente de los botones de navegación */
+        padding: 5px; /* Espaciado dentro de los botones */
+    }
+
+    /* Ajuste para el cuerpo del calendario */
+    .calendar-body {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr); /* Mantiene 7 columnas uniformes */
+        gap: 1px; /* Reduce el espacio entre las celdas */
+        padding: 3px; /* Espaciado dentro del cuerpo del calendario */
+    }
+
+    /* Ajuste para los días y fechas */
+    .day, .date {
+        font-size: 0.6rem; /* Reduce el tamaño de la fuente de los días y las fechas */
+        padding: 3px; /* Espaciado dentro de las celdas de los días y fechas */
+        margin: 1px; /* Espaciado entre las celdas */
+        min-width: 18px; /* Establece un tamaño mínimo para las celdas */
+        max-width: 100%; /* Asegura que las celdas no sobrepasen el ancho disponible */
+        text-align: center; /* Centra el texto dentro de las celdas */
+    }
+
+    /* Ajustes para el modal */
+    .modal {
+        max-width: 90%; /* Limita el ancho máximo del modal al 90% */
+        width: 90%; /* Establece el ancho del modal al 90% */
+        padding: 10px; /* Añade espaciado dentro del modal */
+    }
+
+    /* Ajuste para el contenido del modal */
+    .modal-content {
+        padding: 8px; /* Espaciado dentro del contenido del modal */
+    }
+
+    .exercise-grid {
+        grid-template-columns: 1fr; /* Una sola columna en móvil */
+        max-height: 200px; /* Ajusta según lo que necesites */
+        overflow-y: auto;
+    }
+}

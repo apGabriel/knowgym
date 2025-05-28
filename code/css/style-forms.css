@@ -1,0 +1,130 @@
+section.form-container {
+    /* Usa flexbox para centrar el formulario en la pantalla */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    
+    /* Agrega un margen superior para separar del header */
+    margin-top: 50px;
+
+    /* Establece una posición relativa para controlar los elementos internos */
+    position: relative;
+
+    /* Oculta el desbordamiento para evitar desplazamientos no deseados */
+    overflow: hidden;
+
+    & > div.form-box {
+        /* Posición y entrada animada */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) translateX(100%);
+        opacity: 0;
+    
+        /* Estilo visual */
+        background: linear-gradient(to right, #101010, #3E3E3E);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 300px;
+    
+        /* Animaciones */
+        transition: transform 0.5s ease, opacity 0.5s ease;
+    
+        /* Importante: no interactuable */
+        pointer-events: none;
+
+        & > h2 {
+            /* Centra el título */
+            text-align: center;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        & > p {
+            /* Centra el texto descriptivo */
+            text-align: center;
+            margin-bottom: 20px;
+            color: #fff;
+
+            & > a {
+                /* Establece el color de los enlaces */
+                color: #d2bc8a;
+                text-decoration: none;
+            }
+
+            & > a:hover {
+                /* Subraya los enlaces al pasar el ratón sobre ellos */
+                text-decoration: underline;
+            }
+        }
+
+        & > form {
+            /* Organiza los elementos del formulario en columna */
+            display: flex;
+            flex-direction: column;
+
+            & > input {
+                /* Espaciado entre los campos de entrada */
+                margin-bottom: 15px;
+                padding: 10px;
+                font-size: 1rem;
+
+                /* Borde sutil alrededor del campo */
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+
+            & > button {
+                /* Establece un fondo degradado para el botón */
+                background: linear-gradient(to right, #956534, #d2bc8a, #956534);
+                border: none;
+                color: white;
+                padding: 10px;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+
+            & > button:hover {
+                /* Añade un ligero efecto de escala al pasar el ratón sobre el botón */
+                transform: scale(1.05);
+            }
+        }
+    }
+
+    /* Cuando el formulario tiene la clase "active", se muestra en pantalla */
+    & > div.form-box.active {
+        transform: translate(-50%, -50%) translateX(0);
+        opacity: 1;
+
+        /* Ahora sí se puede interactuar */
+        pointer-events: auto;
+    }
+}
+
+.password-container {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.password-container input[type="password"],
+.password-container input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding-right: 40px; /* espacio para el icono */
+    box-sizing: border-box;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #888;
+    font-size: 1.2rem;
+}
