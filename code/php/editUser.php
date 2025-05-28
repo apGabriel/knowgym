@@ -1,6 +1,6 @@
 <?php
-include 'db/editUser.logic.php';
-$mensaje = $_GET['msg'] ?? '';
+    include 'db/editUser.logic.php';
+    $mensaje = $_GET['msg'] ?? '';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -26,28 +26,28 @@ $mensaje = $_GET['msg'] ?? '';
                 <div class="mensaje-alerta"><?= htmlspecialchars($mensaje) ?></div>
             <?php endif; ?>
             <form method="POST" action="editUser.php">
-                <label for="nombre">Name:</label><br />
+                <label for="nombre">Name:</label><br/>
                 <input
                     type="text"
                     name="nombre"
                     id="nombre"
                     value="<?= htmlspecialchars($usuario['username']) ?>"
-                    required /><br /><br />
+                    required/><br/><br/>
 
-                <label for="email">Email:</label><br />
+                <label for="email">Email:</label><br/>
                 <input
                     type="email"
                     name="email"
                     id="email"
                     value="<?= htmlspecialchars($usuario['email']) ?>"
-                    required /><br /><br />
+                    required/><br/><br/>
 
-                <label for="password">New Password (optional):</label><br />
+                <label for="password">New Password:</label><br/>
                 <div class="password-wrapper" style="position: relative; display: inline-block;">
                     <input type="password" name="password" id="password" style="padding-right: 30px;" />
                     <i class="fas password-toggle fa-eye-slash" id="togglePassword"
                         style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
-                </div><br /><br />
+                </div><br/><br/>
 
                 <button type="submit">Save Changes</button>
             </form>

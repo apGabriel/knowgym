@@ -14,36 +14,54 @@
     <ul class="nav-links">
         <?php if (!$is_logged_in): ?>
             <!-- Si el usuario no está logeado, muestra Login y Register -->
-            <li><a href="forms.php?form=login">Login</a></li>
-            <li><a href="forms.php?form=register">Register</a></li>
-        <?php else: ?>
-            <!-- Si el usuario está logeado, muestra ícono de usuario -->
             <li>
-                <a href="editUser.php" title="Edit profile">
-                    <svg width="25" height="25" viewBox="0 0 25 25" fill="white" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle;">
-                        <path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5z" />
-                        <path d="M12 14c-4.42 0-8 1.79-8 4v2h16v-2c0-2.21-3.58-4-8-4z" />
+                <a href="forms.php?form=login">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" class="size-6" style="margin-right: 4px;">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15M12 9l3 3m0 0-3 3m3-3H2.25" />
                     </svg>
+                    Login
+                </a>
+            </li>
+
+            <li>
+                <a href="forms.php?form=register">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="none" stroke="white" class="bi bi-person-plus" viewBox="0 0 16 16" style="margin-right: 4px; color: white;">
+                        <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                        <path fill-rule="evenodd" d="M6 9a5 5 0 0 0-4.546 2.916.5.5 0 0 0 .832.554A4 4 0 0 1 6 10a4 4 0 0 1 3.714 2.47.5.5 0 1 0 .912-.41A5 5 0 0 0 6 9z" />
+                        <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
+                    </svg>
+                    Register
+                </a>
+            </li>
+        <?php else: ?>
+            <!-- Si el usuario está logeado, muestra ícono de usuario y logout -->
+            <li>
+                <a href="editUser.php">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" class="size-6" style="margin-right: 4px;">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
+                    </svg>
+                    Edit profile
                 </a>
             </li>
             <li>
-                <a href="index.php" onclick="logoutUser()" title="Log out">
-                    <svg width="25" height="25" viewBox="0 0 25 25" fill="white" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle;">
-                        <path d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L13.67 11H3v2h10.67l-3.58 3.59z" />
-                        <path d="M19 3H5c-1.1 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />
+                <a href="index.php" onclick="logoutUser()">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" class="size-6" style="margin-right: 4px;">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
                     </svg>
+                    Log out
                 </a>
             </li>
         <?php endif; ?>
         <li>
-            <a href="contact.php" title="Contact">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" viewBox="0 0 25 25" style="vertical-align: middle;">
-                    <path d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM6 9h12v2H6V9zm8 4H6v-2h8v2zm4-6H6V5h12v2z" />
+            <a href="contact.php">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" />
                 </svg>
+                Contact
             </a>
         </li>
-    </ul>
 
+    </ul>
 
     <script src="../js/menu.js"></script>
 

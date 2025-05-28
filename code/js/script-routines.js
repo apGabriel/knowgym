@@ -638,17 +638,18 @@ function updateSelectedExercisesEdit() {
         exercises.forEach((exercise, index) => {
             const wrapper = document.createElement("div");
             wrapper.classList.add("exercise-entry");
+        
             const nameSpan = document.createElement("span");
             nameSpan.classList.add("exercise-name");
             nameSpan.textContent = exercise.exercise_name || exercise;
             nameSpan.style.fontSize = "0.85rem";
             nameSpan.style.marginRight = "6px";
-
+        
             const setsLabel = document.createElement("label");
             setsLabel.textContent = "Sets:";
             setsLabel.style.fontSize = "0.75rem";
             setsLabel.style.marginRight = "2px";
-
+        
             const setsInput = document.createElement("input");
             setsInput.type = "number";
             setsInput.classList.add("sets-input");
@@ -657,12 +658,12 @@ function updateSelectedExercisesEdit() {
             setsInput.style.width = "45px";
             setsInput.style.fontSize = "0.8rem";
             setsInput.style.marginRight = "4px";
-
+        
             const modeSelect = document.createElement("select");
             modeSelect.classList.add("mode-select");
             modeSelect.style.fontSize = "0.8rem";
             modeSelect.style.marginRight = "4px";
-
+        
             const repsInput = document.createElement("input");
             repsInput.type = "number";
             repsInput.classList.add("reps-input");
@@ -672,7 +673,7 @@ function updateSelectedExercisesEdit() {
             repsInput.style.width = "50px";
             repsInput.style.fontSize = "0.8rem";
             repsInput.style.marginRight = "4px";
-
+        
             const durationInput = document.createElement("input");
             durationInput.type = "number";
             durationInput.classList.add("duration-input");
@@ -682,10 +683,10 @@ function updateSelectedExercisesEdit() {
             durationInput.style.width = "50px";
             durationInput.style.fontSize = "0.8rem";
             durationInput.style.marginRight = "4px";
-
+        
             // Definir modo desde base de datos
             const modeFromData = exercise.reps !== null ? "reps" : (exercise.duration !== null ? "duration" : "reps");
-
+        
             ["reps", "duration"].forEach(opt => {
                 const option = document.createElement("option");
                 option.value = opt;
@@ -693,7 +694,7 @@ function updateSelectedExercisesEdit() {
                 if (opt === modeFromData) option.selected = true;
                 modeSelect.appendChild(option);
             });
-
+        
             if (modeFromData === "reps") {
                 repsInput.style.display = "inline-block";
                 durationInput.style.display = "none";
@@ -701,7 +702,7 @@ function updateSelectedExercisesEdit() {
                 repsInput.style.display = "none";
                 durationInput.style.display = "inline-block";
             }
-
+        
             modeSelect.addEventListener("change", () => {
                 const mode = modeSelect.value;
                 if (mode === "reps") {
@@ -716,28 +717,28 @@ function updateSelectedExercisesEdit() {
                     repsInput.value = "";
                 }
             });
-
+        
             repsInput.addEventListener("input", () => {
                 const val = parseInt(repsInput.value);
                 selectedExercises[muscle][index].reps = val > 0 ? val : 12;
             });
-
+        
             durationInput.addEventListener("input", () => {
                 const val = parseInt(durationInput.value);
                 selectedExercises[muscle][index].duration = val > 0 ? val : 60;
             });
-
+        
             setsInput.addEventListener("input", () => {
                 const val = parseInt(setsInput.value);
                 selectedExercises[muscle][index].sets = val > 0 ? val : 3;
             });
-
+        
             const removeButton = document.createElement("button");
             removeButton.id = "delete-exercise";
             removeButton.textContent = "x";
             removeButton.style.cursor = "pointer";
             removeButton.style.fontSize = "0.8rem";
-
+        
             removeButton.addEventListener("click", () => {
                 selectedExercises[muscle].splice(index, 1);
                 if (selectedExercises[muscle].length === 0) {
@@ -745,7 +746,16 @@ function updateSelectedExercisesEdit() {
                 }
                 updateSelectedExercisesEdit();
             });
-
+        
+            // Si no es modo edición, esconder elementos
+            if (!isEditMode) {
+                setsLabel.style.display = "none";
+                setsInput.style.display = "none";
+                modeSelect.style.display = "none";
+                repsInput.style.display = "none";
+                durationInput.style.display = "none";
+            }
+        
             wrapper.appendChild(nameSpan);
             wrapper.appendChild(setsLabel);
             wrapper.appendChild(setsInput);
@@ -755,6 +765,7 @@ function updateSelectedExercisesEdit() {
             wrapper.appendChild(removeButton);
             list.appendChild(wrapper);
         });
+        
 
         muscleDiv.appendChild(list);
         container.appendChild(muscleDiv);

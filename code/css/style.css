@@ -72,7 +72,8 @@ header {
             &>a:hover {
                 color: #d2bc8a; /* Color dorado al pasar el cursor */
                 & > svg{
-                    fill: #d2bc8a;
+                   /* fill: #d2bc8a;*/
+                    stroke: #d2bc8a;
                 }
             }
         }
