@@ -1,0 +1,156 @@
+section.edit-muscle-container {
+    max-width: 800px;
+    margin: 100px auto 50px auto;
+    padding: 40px;
+    background: linear-gradient(to right, #101010, #3E3E3E);
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    color: #fff;
+    font-family: 'Neuton', serif;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.edit-muscle-container h2 {
+    font-size: 2rem;
+    color: #d2bc8a;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.edit-muscle-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.edit-muscle-container label {
+    font-weight: bold;
+    color: #d2bc8a;
+    align-self: flex-start;
+}
+
+.edit-muscle-container input[type="text"],
+.edit-muscle-container select,
+.edit-muscle-container textarea {
+    padding: 10px;
+    border: 2px solid #956534;
+    border-radius: 8px;
+    background-color: #2a2a2a;
+    color: #fff;
+    font-size: 1rem;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+.edit-muscle-container input[type="text"],
+.edit-muscle-container select {
+    width: 70%;
+    max-width: 500px;
+}
+
+.edit-muscle-container textarea {
+    width: 90%;
+    max-width: 600px;
+    height: 150px;
+}
+
+.edit-muscle-container input:focus,
+.edit-muscle-container select:focus,
+.edit-muscle-container textarea:focus {
+    outline: none;
+    border-color: #d2bc8a;
+    background-color: #3a3a3a;
+}
+
+
+.edit-muscle-container .back-link {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.edit-muscle-container .back-link a {
+    color: #d2bc8a;
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+
+.edit-muscle-container .back-link a:hover {
+    text-decoration: underline;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+th, td {
+    padding: 0.5rem;
+    vertical-align: top;
+}
+
+img.gif-thumb,
+.gif-thumb {
+    max-width: 120px;
+    max-height: 120px;
+    border: 2px solid #956534;
+    border-radius: 8px;
+}
+
+textarea,
+input[type="text"] {
+    width: 100%;
+}
+
+.gif-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Estilos para los botones Save y Delete */
+button.save-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+}
+
+button.save-btn:hover {
+    background-color: #218838;
+}
+
+button.delete-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+}
+
+button.delete-btn:hover {
+    background-color: #e53935;
+}
+
+button.add-btn {
+    background-color: #3E3E3E;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.5s ease;
+}
+
+button.add-btn:hover {
+    
+    scale: 1.2;
+}

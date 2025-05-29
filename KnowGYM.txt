@@ -6,6 +6,20 @@ CREATE TABLE users (
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL);
 
+    ALTER TABLE users
+    ADD isAdmin BOOLEAN NOT NULL DEFAULT FALSE;
+
+ps aux | grep apache2
+root        1623  0.0  0.2 211628 21284 ?        Ss   12:59   0:03 /usr/sbin/apache2 -k start
+www-data    1639  0.0  0.1 212364 10624 ?        S    12:59   0:00 /usr/sbin/apache2 -k start
+www-data    1640  0.0  0.1 212364 10624 ?        S    12:59   0:00 /usr/sbin/apache2 -k start
+www-data    1646  0.0  0.1 212364 10624 ?        S    12:59   0:00 /usr/sbin/apache2 -k start
+www-data    1647  0.0  0.1 212364 10496 ?        S    12:59   0:00 /usr/sbin/apache2 -k start
+www-data    1650  0.0  0.1 212364 10624 ?        S    12:59   0:00 /usr/sbin/apache2 -k start
+ubuntu     28734  0.0  0.0   6628  2176 pts/2    S+   17:16   0:00 grep --color=auto apache2
+ubuntu@ubuntu2204:/opt/lampp/htdocs/php/knowgym/img$ sudo chmod -R 777 exercises-gif/
+ubuntu@ubuntu2204:/opt/lampp/htdocs/php/knowgym/img$ sudo chown -R www-data:www-data exercises-gif/
+
 http://localhost/phpmyadmin/index.php?route=/sql&pos=0&db=knowgym&table=users
 
 CREATE TABLE muscles (

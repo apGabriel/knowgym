@@ -1,11 +1,15 @@
+<?php
+    session_start();
+    $isAdmin = isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] == 1;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>KnowGYM - Your Sports Agenda</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="icon" href="../../img/logo-wings.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="icon" href="../../img/logo-wings.ico" type="image/x-icon" />
 </head>
 <body>
     <?php include 'common/header.php'; ?>
@@ -14,7 +18,10 @@
         <p>Your sports agenda</p>
         <div class="buttons">
             <button id="calendar-btn">Calendar</button>
-            <button onclick="window.location.href='muscle.php'">Muscular Groups</button>
+            <button 
+              onclick="window.location.href='<?= $isAdmin ? 'editMuscle.php' : 'muscle.php' ?>'">
+              Muscular Groups
+            </button>
         </div>
         <p id="calendar-warning" class="hidden">⚠️ Login is required to access the calendar</p>
     </section>
@@ -37,6 +44,7 @@
     <?php include 'common/footer.php'; ?>
 
     <script src="../js/enable_calendar.js"></script>
+    
 
 </body>
 </html>
