@@ -11,6 +11,7 @@
         <img src="../../img/burger-menu.svg" alt="menu" />
 
     </div>
+
     <ul class="nav-links">
         <?php if (!$is_logged_in): ?>
             <!-- Si el usuario no está logeado, muestra Login y Register -->
@@ -34,15 +35,16 @@
                 </a>
             </li>
         <?php else: ?>
-            <!-- Si el usuario está logeado, muestra ícono de usuario y logout -->
+            <!-- Si el usuario está logeado, muestra ícono de usuario o admin -->
             <li>
-                <a href="editUser.php">
+                <a href="<?php echo $isAdmin ? 'editAllProfiles.php' : 'editProfile.php'; ?>">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" class="size-6" style="margin-right: 4px;">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
                     </svg>
-                    Edit profile
+                    <?php echo $isAdmin ? 'Edit users' : 'Edit profile'; ?>
                 </a>
             </li>
+
             <li>
                 <a href="index.php" onclick="logoutUser()">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" class="size-6" style="margin-right: 4px;">
@@ -60,8 +62,8 @@
                 Contact
             </a>
         </li>
-
     </ul>
+
 
     <script src="../js/menu.js"></script>
 

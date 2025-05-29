@@ -15,7 +15,7 @@ section.hero h1 {
 
 section.hero form {
     display: inline-block;
-    background: linear-gradient(to right, #101010, #3E3E3E); /* Fondo con degradado oscuro */
+    background: linear-gradient(to right, #101010, #3E3E3E);
     padding: 50px;
     border-radius: 10px;
     backdrop-filter: blur(5px);
@@ -56,12 +56,14 @@ section.hero button:hover {
     display: inline-block;
     width: 100%;
 }
+
 .password-wrapper input[type="password"],
 .password-wrapper input[type="text"] {
     width: 100%;
-    padding-right: 30px; /* espacio para el icono */
+    padding-right: 30px;
     box-sizing: border-box;
 }
+
 .password-toggle {
     position: absolute;
     right: 8px;
@@ -70,6 +72,7 @@ section.hero button:hover {
     cursor: pointer;
     color: #666;
 }
+
 .password-toggle:hover {
     color: #333;
 }
@@ -96,4 +99,42 @@ section.hero button:hover {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* Nuevos estilos para tablas dentro de .hero */
+.hero table {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background-color: #1f1f1f;
+    color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.hero th,
+.hero td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #444;
+}
+
+.hero thead {
+    background: linear-gradient(to right, #956534, #d2bc8a, #956534);
+    color: #fff;
+}
+
+.hero tbody tr:hover {
+    background-color: #333;
+}
+
+.hero a {
+    color: #d2bc8a;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.hero a:hover {
+    text-decoration: underline;
 }

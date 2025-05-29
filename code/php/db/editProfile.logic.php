@@ -51,11 +51,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $usuario['email'] = $email;
 
         // Redirigir con mensaje en URL (evita resubmission POST)
-        header("Location: editUser.php?msg=" . urlencode("Correctly updated information."));
+        header("Location: editProfile.php?msg=" . urlencode("Correctly updated information."));
         exit();
     } else {
         // Redirigir con mensaje de error
-        header("Location: editUser.php?msg=" . urlencode("Error changing information."));
+        header("Location: editProfile.php?msg=" . urlencode("Error changing information."));
         exit();
     }
 }

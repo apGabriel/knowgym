@@ -1,3 +1,13 @@
+<?php
+include 'db/check_session.php';
+
+if (!$is_logged_in) {
+    header("Location: index.php");
+    exit;
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 

@@ -1,6 +1,14 @@
 <?php
-    include 'db/editUser.logic.php';
+    include 'db/check_session.php';
+
+    if (!$is_logged_in) {
+        header("Location: index.php");
+        exit;
+    }
+
+    include 'db/editProfile.logic.php';
     $mensaje = $_GET['msg'] ?? '';
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -10,7 +18,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>KnowGYM - Edit User</title>
     <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/style-editUser.css" />
+    <link rel="stylesheet" href="../css/style-editProfile.css" />
     <link rel="icon" href="../../img/logo-wings.ico" type="image/x-icon" />
     <!-- Font Awesome para el icono del ojo -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -25,7 +33,7 @@
             <?php if (!empty($mensaje)) : ?>
                 <div class="mensaje-alerta"><?= htmlspecialchars($mensaje) ?></div>
             <?php endif; ?>
-            <form method="POST" action="editUser.php">
+            <form method="POST" action="editProfile.php">
                 <label for="nombre">Name:</label><br/>
                 <input
                     type="text"
