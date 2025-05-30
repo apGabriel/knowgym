@@ -1,25 +1,30 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const calendarButton = document.getElementById("calendar-btn");
     const calendarWarning = document.getElementById("calendar-warning");
+    const isAdmin = calendarButton.dataset.isAdmin === "1"; // lee el valor de PHP
 
-    // Verificación de sesión al cargar la página
-    if (localStorage.getItem('user_logged_in') === 'true') {
-        calendarButton.classList.remove("disabled"); // Habilitar el botón
-        calendarWarning.style.display = "none"; // Ocultar mensaje
+    const isLoggedIn = localStorage.getItem('user_logged_in') === 'true';
+
+    if (isLoggedIn) {
+        calendarButton.classList.remove("disabled");
+        calendarWarning.style.display = "none";
     } else {
-        calendarButton.classList.add("disabled"); // Deshabilitar el botón visualmente
-        calendarWarning.style.display = "none"; // Asegúrate de que el mensaje esté oculto al cargar
+        calendarButton.classList.add("disabled");
+        calendarWarning.style.display = "none";
     }
 
-    // Si el usuario no está logeado y hace clic en el calendario, muestra el mensaje
-    calendarButton.addEventListener("click", function(event) {
-        // Si el usuario no está logueado
-        if (localStorage.getItem('user_logged_in') !== 'true') {
-            event.preventDefault(); // Evitar la acción del clic (no redirigir)
-            calendarWarning.style.display = "block"; // Mostrar el mensaje
+    calendarButton.addEventListener("click", function (event) {
+        if (!isLoggedIn) {
+            event.preventDefault();
+            calendarWarning.style.display = "block"; // Mostrar advertencia
+            return;
+        }
+
+        // Redirige dependiendo de si es admin o no
+        if (isAdmin) {
+            window.location.href = "editAllRoutines.php";
         } else {
-            // Si el usuario está logueado, redirigir al calendario
-            window.location.href = "calendar.php"; // Redirección al calendario
+            window.location.href = "calendar.php";
         }
     });
 });

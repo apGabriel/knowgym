@@ -17,10 +17,11 @@
         <h1>KnowGYM</h1>
         <p>Your sports agenda</p>
         <div class="buttons">
-            <button id="calendar-btn">Calendar</button>
-            <button 
-              onclick="window.location.href='<?= $isAdmin ? 'editMuscle.php' : 'muscle.php' ?>'">
-              Muscular Groups
+            <button id="calendar-btn" data-is-admin="<?= $isAdmin ? '1' : '0' ?>">
+                Calendar
+            </button>
+            <button onclick="window.location.href='<?= $isAdmin ? 'editMuscle.php' : 'muscle.php' ?>'">
+                Muscular Groups
             </button>
         </div>
         <p id="calendar-warning" class="hidden">⚠️ Login is required to access the calendar</p>

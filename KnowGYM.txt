@@ -194,8 +194,8 @@ CREATE TABLE routine_exercises (
     routine_id INT NOT NULL,
     exercise_id INT NOT NULL,
     sets INT NOT NULL DEFAULT 3,  -- Número de series
-    reps INT DEFAULT NULL,        -- Número de repeticiones (para ejercicios de fuerza)
-    duration INT DEFAULT NULL,    -- Duración en segundos (para ejercicios de resistencia o cardio)
+    reps INT DEFAULT 12,        -- Número de repeticiones (para ejercicios de fuerza)
+    duration INT DEFAULT 60,    -- Duración en segundos (para ejercicios de resistencia o cardio)
     FOREIGN KEY (routine_id) REFERENCES routines(id) ON DELETE CASCADE,
     FOREIGN KEY (exercise_id) REFERENCES exercises(id) ON DELETE CASCADE
 );
