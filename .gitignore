@@ -1,0 +1,12 @@
+# Credenciales locales (NUNCA subir)
+config.local.php
+.env
+*.local.php
+
+# Dependencias / sistema
+/vendor/
+node_modules/
+.DS_Store
+
+# Notas y capturas de desarrollo
+KnowGYM.txt
