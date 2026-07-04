@@ -5,3 +5,8 @@ putenv('DB_HOST=127.0.0.1');
 putenv('DB_NAME=knowgym');
 putenv('DB_USER=gabriel');
 putenv('DB_PASS=PON_AQUI_LA_NUEVA_PASSWORD');
+
+// reCAPTCHA v2 ("No soy un robot") — crea tus propias claves en
+// https://www.google.com/recaptcha/admin (ver README).
+putenv('RECAPTCHA_SITEKEY=TU_SITE_KEY_AQUI');
+putenv('RECAPTCHA_SECRET=TU_SECRET_KEY_AQUI');
