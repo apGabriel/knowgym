@@ -1,0 +1,7 @@
+<?php
+// Copia este archivo a config.local.php y rellena con tus credenciales reales.
+// config.local.php está en .gitignore y NUNCA debe subirse.
+putenv('DB_HOST=127.0.0.1');
+putenv('DB_NAME=knowgym');
+putenv('DB_USER=gabriel');
+putenv('DB_PASS=PON_AQUI_LA_NUEVA_PASSWORD');
