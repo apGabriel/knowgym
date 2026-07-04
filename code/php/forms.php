@@ -1,3 +1,4 @@
+<?php require_once 'db/db.php'; // carga config.local.php → RECAPTCHA_SITEKEY disponible ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,8 +51,8 @@
                         <i class="fas fa-eye password-toggle"></i>
                     </div>
 
-                    <!-- reCAPTCHA -->
-                    <div class="g-recaptcha" data-sitekey="6Lc_yt4qAAAAABhGg_uDtqzDHzPKw6QQ7uPpNVnL"></div>
+                    <!-- reCAPTCHA (la site key se configura en config.local.php, ver README) -->
+                    <div class="g-recaptcha" data-sitekey="<?php echo htmlspecialchars(getenv('RECAPTCHA_SITEKEY') ?: '', ENT_QUOTES); ?>"></div>
 
                     <button type="submit" name="action" value="register">Register</button>
                 </form>
@@ -62,7 +63,6 @@
         </section>
     </main>
     <?php include 'common/footer.php'; ?>
-    <?php include 'db/db.php'; ?>
 
     <script src="../js/forms.js"></script>
 </body>
