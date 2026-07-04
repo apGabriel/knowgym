@@ -1,7 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-
 session_start();
 header("Content-Type: application/json");
 require_once "db.php";
@@ -20,5 +17,6 @@ try {
     echo json_encode($dates);
 } catch (Exception $e) {
     http_response_code(500);
-    echo json_encode(["error" => $e->getMessage()]);
+    error_log('getUserEventDates: ' . $e->getMessage());
+    echo json_encode(["error" => "Server error."]);
 }

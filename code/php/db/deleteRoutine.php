@@ -2,10 +2,6 @@
 // Incluir el archivo de conexión
 include('db.php');  // Asegúrate de que la ruta sea correcta
 
-// Habilitar la visualización de errores para la depuración
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-
 // Limpia cualquier salida anterior
 ob_clean();
 
@@ -43,7 +39,8 @@ try {
         echo json_encode(["success" => false, "message" => "Routine not found or already deleted."]);
     }
 } catch (PDOException $e) {
-    // Si ocurre un error en la base de datos, se captura y se envía el mensaje
-    echo json_encode(["success" => false, "message" => "Database error: " . $e->getMessage()]);
+    // El detalle va al log del servidor, nunca al cliente
+    error_log('deleteRoutine: ' . $e->getMessage());
+    echo json_encode(["success" => false, "message" => "Database error."]);
 }
 ?>

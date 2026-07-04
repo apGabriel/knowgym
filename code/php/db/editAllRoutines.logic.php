@@ -49,7 +49,8 @@ try {
     }
 
 } catch (PDOException $e) {
-    die("Error loading data: " . $e->getMessage());
+    error_log('editAllRoutines: ' . $e->getMessage());
+    die("Error loading data.");
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

@@ -1,10 +1,6 @@
 <?php
 include('db.php');
 
-// Activar errores para desarrollo
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-
 // Limpiar cualquier salida previa
 ob_start();
 header('Content-Type: application/json');
@@ -86,9 +82,10 @@ try {
 } catch (PDOException $e) {
     $pdo->rollBack(); // Revertir cambios en caso de error
     ob_end_clean(); // Limpiar buffer antes del error
+    error_log('updateRoutine: ' . $e->getMessage());
     echo json_encode([
         "success" => false,
-        "message" => "Database error: " . $e->getMessage()
+        "message" => "Database error."
     ]);
 }
 ?>

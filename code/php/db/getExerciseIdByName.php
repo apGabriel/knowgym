@@ -1,8 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 header('Content-Type: application/json');
 
 if (!isset($_GET['name'])) {
@@ -26,5 +22,6 @@ try {
         echo json_encode(['exercise_id' => null]);
     }
 } catch (PDOException $e) {
-    echo json_encode(['error' => 'Database error: ' . $e->getMessage()]);
+    error_log('getExerciseIdByName: ' . $e->getMessage());
+    echo json_encode(['error' => 'Database error.']);
 }

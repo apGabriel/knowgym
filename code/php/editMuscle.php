@@ -1,8 +1,4 @@
 <?php
-/*ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);*/
-
 include 'db/check_session.php';
 include 'db/db.php';
 
@@ -20,7 +16,8 @@ try {
     $stmt->execute();
     $muscles = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-    die("Error cargando músculos: " . $e->getMessage());
+    error_log('editMuscle: ' . $e->getMessage());
+    die("Error cargando músculos.");
 }
 
 // Función para validar extensión de archivo gif/webp

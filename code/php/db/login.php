@@ -1,8 +1,4 @@
 <?php
-// Habilitar la visualización de errores para depuración
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-
 header('Content-Type: application/json'); // <-- IMPORTANTE
 
 session_start(); // Iniciar sesión
@@ -52,7 +48,8 @@ try {
         exit();
     }
 } catch (Exception $e) {
-    echo json_encode(['success' => false, 'message' => 'Server error: ' . $e->getMessage()]);
+    error_log('login: ' . $e->getMessage());
+    echo json_encode(['success' => false, 'message' => 'Server error.']);
     exit();
 }
 ?>

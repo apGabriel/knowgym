@@ -1,7 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-
 session_start();
 header("Content-Type: application/json");
 
@@ -73,5 +70,6 @@ try {
 } catch (Exception $e) {
     $pdo->rollBack();
     http_response_code(500);
-    echo json_encode(["success" => false, "message" => $e->getMessage()]);
+    error_log('saveRoutineEvent: ' . $e->getMessage());
+    echo json_encode(["success" => false, "message" => "Server error."]);
 }

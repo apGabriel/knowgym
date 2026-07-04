@@ -35,5 +35,6 @@ try {
 
     echo json_encode(["success" => true]);
 } catch (PDOException $e) {
-    echo json_encode(["success" => false, "message" => $e->getMessage()]);
+    error_log('saveRoutine: ' . $e->getMessage());
+    echo json_encode(["success" => false, "message" => "Database error."]);
 }
