@@ -9,7 +9,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
-    $recaptcha_secret = "***REMOVED***"; // Reemplaza con tu clave secreta de reCAPTCHA
+    // La clave secreta vive fuera del repo (variable de entorno / config.local.php)
+    $recaptcha_secret = getenv('RECAPTCHA_SECRET');
+    if (!$recaptcha_secret) {
+        error_log('register: RECAPTCHA_SECRET no configurada');
+        echo json_encode(['success' => false, 'message' => 'CAPTCHA verification unavailable']);
+        exit();
+    }
     $recaptcha_response = $_POST['g-recaptcha-response'];
 
     // Verificar con Google
